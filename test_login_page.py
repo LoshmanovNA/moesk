@@ -1,10 +1,16 @@
-from seleniumbase import BaseCase
-from .pages import login_page
-from . import data
+from .pages.login_page import LoginPage
+from . import data as d
 
 
-class TestAuthorizationPage(BaseCase):
+class TestLoginPage(LoginPage):
 
-    def test_authorization(self):
-        self.open(data.lk_prod)
-        self.assert_element('a.profile-link')
+    def test_login(self):
+        """
+        Авторизация под существующим пользователем и
+        и проверка нахождения на главной странице ЛК
+        """
+        self.open(self.env)  # Выбираем окружение (параметр --env. По умолчанию тест)
+        self.login_user(d.fl, d.password)  # Вводим логин и пароль из файла data
+        self.should_be_main_page_lk()  # Проверям главную страницу путем поиска ссылки на профиль
+
+
