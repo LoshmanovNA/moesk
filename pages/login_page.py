@@ -15,6 +15,8 @@ class LoginPage(BaseCase):
         """Проверка успешной авторизации"""
         self.assert_element(BasePageLocators.PROFILE_LINK)
 
+    def registration_form(self):
+        pass
 
 
 
