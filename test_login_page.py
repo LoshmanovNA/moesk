@@ -16,4 +16,5 @@ class TestLoginPage(LoginPage):
     def test_registration_form_fl(self):
         self.open(self.env)
         self.fill_registration_form_fl()
+        self.should_be_confirm_page()
 
