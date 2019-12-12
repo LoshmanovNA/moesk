@@ -21,7 +21,7 @@ class LoginPage(BaseCase):
     def fill_registration_form_fl(self):
         """Проверка регистрации заявителя вида ФЛ (Физ. лицо)"""
         # Берем тестовую почту из файла с данными
-        test_email = data.test_email
+        test_email = data.new_user
         # Переходим по ссылке для регистрации
         self.click(LoginPageLocators.REGISTER_LINK)
         # Открываем выпадающий список Тип пользователя
@@ -41,23 +41,24 @@ class LoginPage(BaseCase):
         self.click(RegisterPageLocators.NEXT_STEP, timeout=3)
 
     def should_be_confirm_page(self):
-        url = self.get_current_url()
+        """Проверяем, что находимся на странице с информацией об отправке email"""
+        url = self.get_current_url()  # Получаем текущий url
         expected_text = 'email_sent'
         assert expected_text in url, f"Message: {url} not contains {expected_text}"
 
     def activate_new_account(self):
-        time = datetime.datetime.isoformat  # пример формата 2014-04-21 06:53:34
-        sql = 'UPDATE users ' \
-              'SET confirmed_at=time, confirmation_sent_at=time, sms_confirmed_at=dt, first_password_changed=1' \
-              'WHERE email=%s'
-        value = data.test_email
+        """Вносим изменения в БД для активации УЗ"""
+        time = datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S")  # Дата для сохранения в БД
+        password = data.pass_hash  # Хэш пароля для сохранения в БД
+        sql = f"UPDATE users SET confirmed_at='{time}', sms_confirmed_at='{time}', " \
+              f"encrypted_password='{password}', first_password_changed=1 WHERE email=%s"
+        value = data.new_user  # Email учетной записи, которую нужно активировать
+        connect = DatabaseManager()  # Устанавливаем соединение с БД
+        connect.execute_query(sql, value)  # Выполняем запрос
+
+    def delete_new_account(self):
+        """Удаляем запись о созданной УЗ из БД"""
+        sql = "DELETE FROM users WHERE email=%s"
+        value = data.new_user
         connect = DatabaseManager()
-        connect.execute_query()
-
-
-
-
-
-
-
-
+        connect.execute_query(sql, value)

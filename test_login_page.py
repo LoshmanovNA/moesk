@@ -4,7 +4,7 @@ from . import data as d
 
 class TestLoginPage(LoginPage):
 
-    # def test_login(self):
+    # def test_login_existed_user(self):
     #     """
     #     Авторизация под существующим пользователем и
     #     и проверка нахождения на главной странице ЛК
@@ -17,4 +17,5 @@ class TestLoginPage(LoginPage):
         self.open(self.env)
         self.fill_registration_form_fl()
         self.should_be_confirm_page()
+
 

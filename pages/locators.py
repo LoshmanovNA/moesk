@@ -26,3 +26,4 @@ class RegisterPageLocators:
     CONFIRM1 = '#confirm1'
     CONFIRM2 = '#confirm2'
     NEXT_STEP = '#nextStep'
+    CLOSE_WINDOW = '//a[contains(text(), "Закрыть")]'
