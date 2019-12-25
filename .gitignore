@@ -108,4 +108,4 @@ venv.bak/
 /.idea
 .idea/
 
-UI Tests/data.py
+test_ui/data.py

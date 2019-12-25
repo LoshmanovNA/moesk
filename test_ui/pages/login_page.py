@@ -2,7 +2,7 @@ from .locators import LoginPageLocators, RegisterPageLocators, BasePageLocators
 from .. import data
 from seleniumbase.core.mysql import DatabaseManager
 from seleniumbase import BaseCase
-import datetime
+from faker import Faker
 
 
 class LoginPage(BaseCase):
@@ -18,10 +18,15 @@ class LoginPage(BaseCase):
         """Проверка успешной авторизации"""
         self.assert_element(BasePageLocators.PROFILE_LINK)
 
+    def test_data(self, email, name, surname, phone):
+        faker = Faker('ru_RU')
+        self.email = faker.email()
+        self.name = faker.first_name()
+        self.surname = faker.last_name()
+        self.phone = faker.phone_number()
+
     def fill_registration_form_fl(self):
         """Проверка регистрации заявителя вида ФЛ (Физ. лицо)"""
-        # Берем тестовую почту из файла с данными
-        test_email = data.new_user
         # Переходим по ссылке для регистрации
         self.click(LoginPageLocators.REGISTER_LINK)
         # Открываем выпадающий список Тип пользователя
@@ -29,11 +34,11 @@ class LoginPage(BaseCase):
         # Выбираем тип пользователя ФЛ
         self.click(RegisterPageLocators.USER_TYPE_FL, 'By.XPATH')
         # Вводим данные пользователя
-        self.update_text(RegisterPageLocators.PHONE, '79999999999')
-        self.update_text(RegisterPageLocators.NAME, 'Тест')
-        self.update_text(RegisterPageLocators.SURNAME, 'Тест')
-        self.update_text(RegisterPageLocators.PATRONYMIC, 'Тест')
-        self.update_text(RegisterPageLocators.EMAIL, test_email)
+        self.update_text(RegisterPageLocators.PHONE, self.phone)
+        self.update_text(RegisterPageLocators.NAME, self.name)
+        self.update_text(RegisterPageLocators.SURNAME, self.surname)
+        self.update_text(RegisterPageLocators.PATRONYMIC, self.name)
+        self.update_text(RegisterPageLocators.EMAIL, self.email)
         # Ставим чек-боксы
         self.js_click(RegisterPageLocators.CONFIRM1)
         self.js_click(RegisterPageLocators.CONFIRM2)
@@ -46,19 +51,10 @@ class LoginPage(BaseCase):
         expected_text = 'email_sent'
         assert expected_text in url, f"Message: {url} not contains {expected_text}"
 
-    def activate_new_account(self):
-        """Вносим изменения в БД для активации УЗ"""
-        time = datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S")  # Дата для сохранения в БД
-        password = data.pass_hash  # Хэш пароля для сохранения в БД
-        sql = f"UPDATE users SET confirmed_at='{time}', sms_confirmed_at='{time}', " \
-              f"encrypted_password='{password}', first_password_changed=1 WHERE email=%s"
-        value = data.new_user  # Email учетной записи, которую нужно активировать
-        connect = DatabaseManager()  # Устанавливаем соединение с БД
-        connect.execute_query(sql, value)  # Выполняем запрос
-
     def delete_new_account(self):
         """Удаляем запись о созданной УЗ из БД"""
-        sql = "DELETE FROM users WHERE email=%s"
-        value = data.new_user
-        connect = DatabaseManager()
-        connect.execute_query(sql, value)
+        # sql = "DELETE FROM users WHERE email=%s"
+        # value = data.new_user
+        # connect = DatabaseManager()
+        # connect.execute_query(sql, value)
+        print(self.email)
