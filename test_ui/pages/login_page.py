@@ -1,13 +1,10 @@
-from .locators import LoginPageLocators, RegisterPageLocators, BasePageLocators
-from .. import data
-from seleniumbase.core.mysql import DatabaseManager
 from seleniumbase import BaseCase
-from faker import Faker
+from .locators import LoginPageLocators, RegisterPageLocators, BasePageLocators
+from seleniumbase.core.mysql import DatabaseManager
 
 
 class LoginPage(BaseCase):
     """Действия на странице логина"""
-
     def login_user(self, login, password):
         """Авторизация под существующим пользователем"""
         self.update_text(LoginPageLocators.LOGIN_INPUT, login)
@@ -18,14 +15,7 @@ class LoginPage(BaseCase):
         """Проверка успешной авторизации"""
         self.assert_element(BasePageLocators.PROFILE_LINK)
 
-    def test_data(self, email, name, surname, phone):
-        faker = Faker('ru_RU')
-        self.email = faker.email()
-        self.name = faker.first_name()
-        self.surname = faker.last_name()
-        self.phone = faker.phone_number()
-
-    def fill_registration_form_fl(self):
+    def fill_registration_form_fl(self, phone, name, surname, patronymic, email):
         """Проверка регистрации заявителя вида ФЛ (Физ. лицо)"""
         # Переходим по ссылке для регистрации
         self.click(LoginPageLocators.REGISTER_LINK)
@@ -34,11 +24,11 @@ class LoginPage(BaseCase):
         # Выбираем тип пользователя ФЛ
         self.click(RegisterPageLocators.USER_TYPE_FL, 'By.XPATH')
         # Вводим данные пользователя
-        self.update_text(RegisterPageLocators.PHONE, self.phone)
-        self.update_text(RegisterPageLocators.NAME, self.name)
-        self.update_text(RegisterPageLocators.SURNAME, self.surname)
-        self.update_text(RegisterPageLocators.PATRONYMIC, self.name)
-        self.update_text(RegisterPageLocators.EMAIL, self.email)
+        self.update_text(RegisterPageLocators.PHONE, phone)
+        self.update_text(RegisterPageLocators.NAME, name)
+        self.update_text(RegisterPageLocators.SURNAME, surname)
+        self.update_text(RegisterPageLocators.PATRONYMIC, patronymic)
+        self.update_text(RegisterPageLocators.EMAIL, email)
         # Ставим чек-боксы
         self.js_click(RegisterPageLocators.CONFIRM1)
         self.js_click(RegisterPageLocators.CONFIRM2)
@@ -51,10 +41,21 @@ class LoginPage(BaseCase):
         expected_text = 'email_sent'
         assert expected_text in url, f"Message: {url} not contains {expected_text}"
 
-    def delete_new_account(self):
-        """Удаляем запись о созданной УЗ из БД"""
-        # sql = "DELETE FROM users WHERE email=%s"
-        # value = data.new_user
-        # connect = DatabaseManager()
+    def should_be_new_record_at_db(self, email):
+        connect = DatabaseManager()
+        sql = "SELECT email FROM users WHERE email=%s"
+        value = email
         # connect.execute_query(sql, value)
-        print(self.email)
+        rows = connect.query_fetch_one(sql, value)
+        print(type(rows))
+        for row in rows:
+            print(row)
+            assert row == email, f'{row} is no equal {email} '
+
+    def delete_new_record(self, email):
+        """Удаляем запись о созданной УЗ из БД и проверяем, что email не найден"""
+        connect = DatabaseManager()
+        sql = "DELETE FROM users WHERE email=%s"
+        value = email
+        connect.execute_query(sql, value)
+        assert not self.should_be_new_record_at_db(email)
