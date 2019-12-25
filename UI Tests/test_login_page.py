@@ -1,5 +1,4 @@
 from .pages.login_page import LoginPage
-from . import data as d
 
 
 class TestLoginPage(LoginPage):
