@@ -34,6 +34,11 @@ class LoginPage(BaseCase):
         self.js_click(RegisterPageLocators.CONFIRM2)
         # Кликаем кнопку продолжения регистрации
         self.click(RegisterPageLocators.NEXT_STEP, timeout=3)
+        # Устанавливаем соединение с БД и проверяем наличие новой записи
+        connect = DatabaseManager()
+        sql = "SELECT email FROM users WHERE email=%s"
+        row = connect.query_fetch_one(sql, email)
+        assert row[0] == email
 
     def should_be_confirm_page(self):
         """Проверяем, что находимся на странице с информацией об отправке email"""
@@ -44,12 +49,13 @@ class LoginPage(BaseCase):
     def should_be_new_record_at_db(self, email):
         connect = DatabaseManager()
         sql = "SELECT email FROM users WHERE email=%s"
-        row = connect.query_fetch_one(sql, email)
-        assert row[0] == email # Проверка не отрабатывает!!!
+        assert connect.query_fetch_one(sql, email)
 
     def delete_new_record(self, email):
         """Удаляем запись о созданной УЗ из БД и проверяем, что email не найден"""
         connect = DatabaseManager()
-        sql = "DELETE FROM users WHERE email=%s"
-        connect.execute_query(sql, email)
-        assert not self.should_be_new_record_at_db(email)
+        sql_1 = "DELETE FROM users WHERE email=%s"
+        connect.execute_query(sql_1, email)
+        connect = DatabaseManager()
+        sql_2 = "SELECT email FROM users WHERE email=%s"
+        assert not connect.query_fetch_one(sql_2, email)

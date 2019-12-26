@@ -6,6 +6,5 @@ class TestData:
     name = 'Гарри'
     surname = 'Поттер'
     patronymic = 'Джеймсович'
-    email = 'user@user.user'
+    email = 'test_user@user.user'
 
-# Проблема с импортом данных?

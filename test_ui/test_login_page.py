@@ -16,11 +16,12 @@ class TestLoginPage(LoginPage):
 
     def test_registration_form_fl(self):
         """
-        Генерируем тестовые данные и регистрируем пользователя типа ФЛ
+        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу
+        подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД
         """
-        # self.open(self.env)
-        # self.fill_registration_form_fl(TD.phone, TD.name, TD.surname, TD.patronymic, TD.email)
-        # self.should_be_confirm_page()
+        self.open(self.env)
+        self.fill_registration_form_fl(TD.phone, TD.name, TD.surname, TD.patronymic, TD.email)
+        self.should_be_confirm_page()
         self.should_be_new_record_at_db(TD.email)
         self.delete_new_record(TD.email)
 
