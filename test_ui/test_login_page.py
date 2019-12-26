@@ -1,6 +1,5 @@
 from .pages.login_page import LoginPage
-from . import data as d
-from faker import Faker
+from .data import TestData as TD
 
 
 class TestLoginPage(LoginPage):
@@ -19,17 +18,11 @@ class TestLoginPage(LoginPage):
         """
         Генерируем тестовые данные и регистрируем пользователя типа ФЛ
         """
-        f = Faker('ru-RU')
-        phone = '89998887766'
-        name = f.first_name()
-        surname = f.last_name()
-        patronymic = f.last_name()
-        email = f.email()
-        self.open(self.env)
-        self.fill_registration_form_fl(phone, name, surname, patronymic, email)
-        self.should_be_confirm_page()
-        self.should_be_new_record_at_db(email)
-        self.delete_new_record(email)
+        # self.open(self.env)
+        # self.fill_registration_form_fl(TD.phone, TD.name, TD.surname, TD.patronymic, TD.email)
+        # self.should_be_confirm_page()
+        self.should_be_new_record_at_db(TD.email)
+        self.delete_new_record(TD.email)
 
 
 

@@ -44,18 +44,12 @@ class LoginPage(BaseCase):
     def should_be_new_record_at_db(self, email):
         connect = DatabaseManager()
         sql = "SELECT email FROM users WHERE email=%s"
-        value = email
-        # connect.execute_query(sql, value)
-        rows = connect.query_fetch_one(sql, value)
-        print(type(rows))
-        for row in rows:
-            print(row)
-            assert row == email, f'{row} is no equal {email} '
+        row = connect.query_fetch_one(sql, email)
+        assert row[0] == email # Проверка не отрабатывает!!!
 
     def delete_new_record(self, email):
         """Удаляем запись о созданной УЗ из БД и проверяем, что email не найден"""
         connect = DatabaseManager()
         sql = "DELETE FROM users WHERE email=%s"
-        value = email
-        connect.execute_query(sql, value)
+        connect.execute_query(sql, email)
         assert not self.should_be_new_record_at_db(email)
