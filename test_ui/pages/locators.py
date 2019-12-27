@@ -71,6 +71,7 @@ class NewTPLocators:
     # Выбор документа
     DOCUMENT_TYPE_PASSPORT = '#passport'
     DOCUMENT_TYPE_OTHER = '#other_doc'
+# Если выбран паспорт
     # Паспортные данные
     PASSPORT_SERIA = '#claim_user_passport_series_number'
     PASSPORT_CODE = '#claim_user_passport_code'
@@ -78,7 +79,7 @@ class NewTPLocators:
     PASSPORT_ISSUED = '#claim_user_passport_issued'
     # СНИЛС Заявителя
     USER_SNILS = '#claim_user_snils'
-    # Если выбран радиобатон "Иной документ":
+# Если выбран радиобатон "Иной документ":
     # Выпадающий список "Тип документа"
     OTHER_TYPES_LIST = '.claim_user_doc_type .custom-combobox-toggle'
     PASSPORT_MORIAKA = '#claim_user_doc_type_id option[value="1"]'
