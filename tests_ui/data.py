@@ -7,4 +7,5 @@ class TestData:
     surname = 'Поттер'
     patronymic = 'Джеймсович'
     email = 'test_user@user.user'
+    pass_hash = '$2a$10$fri83evWn.QoHdEa1/LUbOWHn1HmRHID0IueuLuBr6TV.XhT4Arly'
 
