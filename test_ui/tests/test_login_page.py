@@ -1,5 +1,5 @@
-from .pages.login_page import LoginPage
-from .data import TestData as TD
+from ..data import TestData as TD
+from ..pages.login_page import LoginPage
 
 
 class TestLoginPage(LoginPage):

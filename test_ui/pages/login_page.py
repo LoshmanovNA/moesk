@@ -1,5 +1,5 @@
 from seleniumbase import BaseCase
-from .locators import LoginPageLocators, RegisterPageLocators, BasePageLocators
+from ..locators import CommonLocators, LoginPageLocators, RegisterPageLocators
 from seleniumbase.core.mysql import DatabaseManager
 
 
@@ -13,7 +13,7 @@ class LoginPage(BaseCase):
 
     def should_be_main_page_lk(self):
         """Проверка успешной авторизации"""
-        self.assert_element(BasePageLocators.PROFILE_LINK)
+        self.assert_element(CommonLocators.PROFILE_LINK)
 
     def fill_registration_form_fl(self, phone, name, surname, patronymic, email):
         """Проверка регистрации заявителя вида ФЛ (Физ. лицо)"""
