@@ -4,7 +4,8 @@ from ..locators import RegisterPageLocators, LoginPageLocators
 
 class RegistrationPage(BasePage):
     """Действия на странице регистрации"""
-    def fill_registration_form_fl(self, phone, name, surname, patronymic, email):
+    def fill_registration_form_fl(self, phone='phone', name='name', surname='surname',
+                                  patronymic='patronymic', email='email'):
         """Проверка регистрации заявителя вида ФЛ (Физ. лицо)"""
         # Переходим по ссылке для регистрации
         self.click(LoginPageLocators.REGISTER_LINK)
@@ -22,7 +23,7 @@ class RegistrationPage(BasePage):
         self.js_click(RegisterPageLocators.CONFIRM1)
         self.js_click(RegisterPageLocators.CONFIRM2)
         # Кликаем кнопку продолжения регистрации
-        self.click(RegisterPageLocators.NEXT_STEP, timeout=3)
+        self.click(RegisterPageLocators.NEXT_STEP)
 
     def should_be_confirm_page(self):
         """Проверяем, что находимся на странице с информацией об отправке email"""
