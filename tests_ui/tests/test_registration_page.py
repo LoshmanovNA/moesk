@@ -1,8 +1,7 @@
 from ..pages.registration_page import RegistrationPage
-from ..pages.data_base import DataBase
 
 
-class TestRegistrationPage(RegistrationPage, DataBase):
+class TestRegistrationPage(RegistrationPage):
     """Тест создания новой учетной записи"""
 
     def test_registration_form(self):
@@ -11,5 +10,6 @@ class TestRegistrationPage(RegistrationPage, DataBase):
         подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД
         """
         self.open(self.env)
-        self.fill_registration_form_fl(TD.phone, TD.name, TD.surname, TD.patronymic, TD.email)
+        self.fill_registration_form_fl(self.reg_phone, self.reg_name, self.reg_surname,
+                                       self.reg_patronymic, self.reg_email)
         self.should_be_confirm_page()

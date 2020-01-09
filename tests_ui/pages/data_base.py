@@ -1,5 +1,5 @@
 from seleniumbase.core.mysql import DatabaseManager
-from datetime import datetime
+import pytest
 
 
 class DataBase(DatabaseManager):
@@ -15,13 +15,15 @@ class DataBase(DatabaseManager):
     #     connect = DatabaseManager()  # Устанавливаем соединение с БД
     #     connect.execute_query(sql, value)  # Выполняем запрос
 
-    def should_be_new_record_at_db(self, email):
+    @staticmethod
+    def should_be_new_record_at_db(email):
         """Проверяем наличие новой записи в БД"""
         connect = DatabaseManager()
         sql = "SELECT email FROM users WHERE email=%s"
         assert connect.query_fetch_one(sql, email)
 
-    def delete_new_record_from_db(self, email):
+    @staticmethod
+    def delete_new_record_from_db(email):
         """Удаляем запись о созданной УЗ из БД и проверяем, что email не найден"""
         connect = DatabaseManager()
         sql_1 = "DELETE FROM users WHERE email=%s"
