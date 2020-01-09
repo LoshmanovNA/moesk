@@ -9,3 +9,7 @@ def test_login():
 
     response_json = result.json()
     assert "sessionId" in response_json
+# Отчеты allure
+# pytest --alluredir ./reports tests/test
+# allure generate -c ./reports
+# allure serve ./reports

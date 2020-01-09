@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Thu Jan 09 22:24:06 MSK 2020","Thu Jan 09 22:24:06 MSK 2020","197","tests_api.tests","test_login","","","","test_login",""

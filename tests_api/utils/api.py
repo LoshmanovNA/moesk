@@ -11,7 +11,7 @@ class Api:
     config = configparser.ConfigParser()
     config.read('config.ini')
 
-    BASE_URL = config.get('api', 'app_url')
+    BASE_URL = config.get('api', 'url')
     USER_AUTH = BASE_URL + '/user/auth'
     USER_REGISTER = BASE_URL + '/user/register'
 
@@ -25,4 +25,6 @@ class Api:
 
             result = HttpManager.auth(url, data)
             Api.LOGGER.info('TEST: Login with {0}, {1} credentials'.format(user_name, password))
+            Api.LOGGER.error('errors')
+            Api.LOGGER.debug('debugs')
             return result

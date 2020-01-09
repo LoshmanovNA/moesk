@@ -1,0 +1,98 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "MacBook-Air.local",
+    "children" : [ {
+      "name" : "8486-MainThread",
+      "children" : [ {
+        "name" : "test_login",
+        "uid" : "bc6d46e0607596de",
+        "parentUid" : "8a31df9605eacd7d3ca76820b949cb49",
+        "status" : "broken",
+        "time" : {
+          "start" : 1578597162677,
+          "stop" : 1578597164066,
+          "duration" : 1389
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "8a31df9605eacd7d3ca76820b949cb49"
+    }, {
+      "name" : "8733-MainThread",
+      "children" : [ {
+        "name" : "test_login",
+        "uid" : "2613bd53e60ab0c8",
+        "parentUid" : "8df3acc9ff9b6257873dcd5d4f7fa961",
+        "status" : "broken",
+        "time" : {
+          "start" : 1578597827101,
+          "stop" : 1578597827107,
+          "duration" : 6
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "8df3acc9ff9b6257873dcd5d4f7fa961"
+    }, {
+      "name" : "8749-MainThread",
+      "children" : [ {
+        "name" : "test_login",
+        "uid" : "c9f6177cb021a108",
+        "parentUid" : "1a2c054f20893ff38e6226a7c3fe2f5c",
+        "status" : "failed",
+        "time" : {
+          "start" : 1578597846150,
+          "stop" : 1578597846347,
+          "duration" : 197
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "1a2c054f20893ff38e6226a7c3fe2f5c"
+    }, {
+      "name" : "8646-MainThread",
+      "children" : [ {
+        "name" : "test_login",
+        "uid" : "d59d8cb526d756a4",
+        "parentUid" : "6b18f5d19404241079203c243ccfaf04",
+        "status" : "broken",
+        "time" : {
+          "start" : 1578597739777,
+          "stop" : 1578597740005,
+          "duration" : 228
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "6b18f5d19404241079203c243ccfaf04"
+    } ],
+    "uid" : "4642973fc1ea2f142f8406cc160ff92a"
+  }, {
+    "name" : "LoshmanovNA-PC",
+    "children" : [ {
+      "name" : "3260-MainThread",
+      "children" : [ {
+        "name" : "test_login",
+        "uid" : "63718dab354b3f80",
+        "parentUid" : "2a27cb4bc3360124d800024b07606501",
+        "status" : "failed",
+        "time" : {
+          "start" : 1578581419539,
+          "stop" : 1578581419683,
+          "duration" : 144
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "2a27cb4bc3360124d800024b07606501"
+    } ],
+    "uid" : "2b9251abe4c8ff597534a15c35a8fedd"
+  } ]
+}
