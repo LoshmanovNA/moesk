@@ -8,6 +8,7 @@ from .json_fixture import JSONFixture
 
 class Api:
     LOGGER = logging.getLogger(__name__)
+
     config = configparser.ConfigParser()
     config.read('config.ini')
 
@@ -24,7 +25,5 @@ class Api:
             data = JSONFixture.authorization(user_name, password)
 
             result = HttpManager.auth(url, data)
-            Api.LOGGER.info('TEST: Login with {0}, {1} credentials'.format(user_name, password))
-            Api.LOGGER.error('errors')
-            Api.LOGGER.debug('debugs')
+            Api.LOGGER.info(f'TEST: Login with {user_name}, {password} credentials')
             return result
