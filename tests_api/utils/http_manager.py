@@ -3,7 +3,7 @@ import requests
 
 class HttpManager:
     headers = {
-        'Content-Type': 'applicatiob/json',
+        'Content-Type': 'application/json',
         'charset': 'utf-8',
     }
 
