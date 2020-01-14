@@ -1,6 +1,7 @@
-from ..locators import CommonLocators, LoginPageLocators, RegisterPageLocators
-from seleniumbase import BaseCase
 import configparser
+from ..locators import CommonLocators
+from seleniumbase import BaseCase
+
 
 """
 Класс BaseCase фреймворка SeleniumBase инициализирует 
@@ -18,6 +19,8 @@ class BasePage(BaseCase):
     чтобы иметь доступ к методам общих для всех страниц элементов
     и методам фреймворка BaseCase
     """
+    common_locators = CommonLocators()
+
     def setUp(self, masterqa_mode=False):
         super(BasePage, self).setUp()
         config = Config()
@@ -35,7 +38,7 @@ class BasePage(BaseCase):
 
     def should_be_main_page_lk(self):
         """Проверка успешной авторизации"""
-        self.assert_element(CommonLocators.PROFILE_LINK)
+        self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
 
 
 class Config:

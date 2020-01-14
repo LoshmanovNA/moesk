@@ -1,1 +1,1 @@
-from .New_tp import NewTPLocators
+from .new_tp_locators import NewTPLocators

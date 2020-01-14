@@ -1,5 +1,4 @@
 from seleniumbase.core.mysql import DatabaseManager
-import pytest
 
 
 class DataBase(DatabaseManager):
