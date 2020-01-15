@@ -108,6 +108,27 @@ class NewTPLocators:
         NEW_TP_EPU_BUILDING_CSS = '#epu_building'  # Поле ввода номера строения
         NEW_TP_EPU_INDEX_CSS = '#epu_postcode'  # Поле ввода номера индекса
 
+    # Блок "Мощность и напряжение"
+        NEW_TP_MAX_POWER_CSS = '#epu_max_power'  # Ввод максимальной мощности для присоединения
+        NEW_TP_VOLTAGE_LIST_CSS = 'div.epu_voltage_level span  a'  # Раскрыть список классов напряжения
+        NEW_TP_VOLTAGE_VALUE_XPATH = '//div[text()="380 вольт"]'  # Выбор значения напряжения
+        # Блок категории надежности при мощности до 150 кВт
+        NEW_TP_RELIABILITY_LIST_CSS = '.epu_reliability_level span a'  # Раскрыть список категорий надежности
+        NEW_TP_RELIABILITY_VALUE_XPATH = '//div[text()="3"]'  # Выбор значения категории надежности
+        # Блок категории надежности при мощности свыше 150 кВт
+        NEW_TP_RELIABILITY_INPUT_XPATH = '//input[@id="3"]'  # Выбор значения категории надежности
+
+    # Блок "Количество точек присоединения"
+        NEW_TP_EPU_POINTS_CSS = '#epu_point_count'  # Ввод количества точек присоединения
+        NEW_TP_EPU_POINTS_INFO_CSS = '#point_count_info'  # Инфоблок при количестве точек более 4
+        NEW_TP_EPU_POINT1_DESCRIBE_CSS = 'input[name="connection_point[0][name]"]'  # Описание точки 1
+        NEW_TP_EPU_POINT2_DESCRIBE_CSS = 'input[name="connection_point[1][name]"]'  # Описание точки 2
+        NEW_TP_EPU_POINT1_POWER_CSS = 'input[name="connection_point[0][power]"]'  # Мощность точки 1
+        NEW_TP_EPU_POINT2_POWER_CSS = 'input[name="connection_point[1][power]"]'  # Мощность точки 2
+
+    # Блок количества и мощности трансформаторов
+
+
 
 
 
