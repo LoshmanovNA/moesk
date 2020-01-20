@@ -13,5 +13,6 @@ class RegistrationPageLocators:
     REGISTRATION_PHONE_CSS = '#phone_input'
     REGISTRATION_CONFIRM1_CSS = '#confirm1'
     REGISTRATION_CONFIRM2_CSS = '#confirm2'
+    REGISTRATION_CONFIRM3_CSS = '#confirm3'
     REGISTRATION_NEXT_STEP_CSS = '#nextStep'
     REGISTRATION_CLOSE_WINDOW_XPATH = '//a[contains(text(), "Закрыть")]'

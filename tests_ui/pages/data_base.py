@@ -4,15 +4,15 @@ from seleniumbase.core.mysql import DatabaseManager
 class DataBase(DatabaseManager):
     """Действия с базой данных"""
 
-    # def activate_new_account_at_db(self):
-    #     """Вносим изменения в тестовую БД для активации УЗ"""
-    #     time = datetime.today().strftime("%Y-%m-%d %H:%M:%S")  # Дата для сохранения в БД
-    #     password = TD.pass_hash  # Хэш пароля для сохранения в БД
-    #     sql = f"UPDATE users SET confirmed_at='{time}', sms_confirmed_at='{time}', " \
-    #           f"encrypted_password='{password}', first_password_changed=1 WHERE email=%s"
-    #     value = TD.email  # Email учетной записи, которую нужно активировать
-    #     connect = DatabaseManager()  # Устанавливаем соединение с БД
-    #     connect.execute_query(sql, value)  # Выполняем запрос
+    def activate_new_account_at_db(self):
+        """Вносим изменения в тестовую БД для активации УЗ"""
+        time = datetime.today().strftime("%Y-%m-%d %H:%M:%S")  # Дата для сохранения в БД
+        password = TD.pass_hash  # Хэш пароля для сохранения в БД
+        sql = f"UPDATE users SET confirmed_at='{time}', sms_confirmed_at='{time}', " \
+              f"encrypted_password='{password}', first_password_changed=1 WHERE email=%s"
+        value = TD.email  # Email учетной записи, которую нужно активировать
+        connect = DatabaseManager()  # Устанавливаем соединение с БД
+        connect.execute_query(sql, value)  # Выполняем запрос
 
     @staticmethod
     def should_be_new_record_at_db(email):

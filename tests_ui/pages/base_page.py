@@ -1,15 +1,7 @@
 import configparser
-from ..locators import CommonLocators
+
 from seleniumbase import BaseCase
-
-
-"""
-Класс BaseCase фреймворка SeleniumBase инициализирует 
-запуск и закрытие драйвера и содержит множество готовых
-вспомогательных методов для работы с локаторами, базой данных,
-окружениями и другими полезными удобными и готовыми вещами
-которые можно найти в env/lib/python3.7/seleniumbase
-"""
+from ..locators import CommonLocators
 
 
 class BasePage(BaseCase):
@@ -21,20 +13,16 @@ class BasePage(BaseCase):
     """
     common_locators = CommonLocators()
 
-    def setUp(self, masterqa_mode=False):
+    def setUp(self):
         super(BasePage, self).setUp()
         config = Config()
         # For global environment use config['GLOBAL']
         env = config[self.env.upper()]  # Берем значение заданного окружения (TEST, PRODUCTION, etc)
         self.app_url = env['app_url']
-        self.user_email = env['existed_user_fl']
+        self.user_login_fl = env['existing_user_fl']
+        self.user_login_ul = env['existing_user_ul']
+        self.user_login_ip = env['existing_user_ip']
         self.user_pass = env['password']
-        self.reg_phone = config['GLOBAL']['phone']
-        self.reg_name = config['GLOBAL']['name']
-        self.reg_surname = config['GLOBAL']['surname']
-        self.reg_patronymic = config['GLOBAL']['patronymic']
-        self.reg_email = config['GLOBAL']['email']
-        self.get(self.app_url)
 
     def should_be_main_page_lk(self):
         """Проверка успешной авторизации"""
