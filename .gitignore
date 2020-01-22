@@ -108,5 +108,7 @@ venv.bak/
 /.idea
 .idea/
 
+
 config.ini
 seleniumbase/config/settings.py
+helpers/user.json

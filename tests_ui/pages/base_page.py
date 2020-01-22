@@ -23,6 +23,7 @@ class BasePage(BaseCase):
         self.user_login_ul = env['existing_user_ul']
         self.user_login_ip = env['existing_user_ip']
         self.user_pass = env['password']
+        self.user_pass_hash = env['pass_hash']
 
     def should_be_main_page_lk(self):
         """Проверка успешной авторизации"""
