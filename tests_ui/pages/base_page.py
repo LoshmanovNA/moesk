@@ -28,10 +28,9 @@ class BasePage(BaseCase):
 
     def should_be_main_page_lk(self):
         """Проверка успешной авторизации"""
-        if not self.is_element_present(self.common_locators.COMMON_PROFILE_LINK_CSS):
-            if self.find_element(self.page_404.COMMON_404_PAGE_XPATH, by='XPATH'):
-                self.click(self.common_locators.COMMON_MAIN_LOGO_CSS)
-                self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
+        if 'assets/sprite.png' in self.get_current_url():
+            self.click(self.common_locators.COMMON_MAIN_LOGO_CSS)
+            self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
         else:
             self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
 

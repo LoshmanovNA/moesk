@@ -22,7 +22,3 @@ class TestRegistrationPage(RegistrationPage):
                                        phone=self.user.phone,
                                        email=self.user.email)
         self.should_be_confirm_page()
-
-    def tearDown(self):
-        print(self.user.email)
-        super(TestRegistrationPage, self).tearDown()
