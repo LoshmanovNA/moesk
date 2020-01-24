@@ -8,7 +8,7 @@ class RegistrationPage(BasePage):
     registration_page_locators = RegistrationPageLocators()
 
     def fill_registration_form_fl(self, first_name='name', last_name='surname',
-                                  patronymic='patronymic', email='email', phone='phone'):
+                                  patronymic_name='patronymic', email='email', phone='phone'):
         """Проверка регистрации заявителя вида ФЛ (Физ. лицо)"""
         # Переходим по ссылке для регистрации
         self.click(self.login_page_locators.LOGIN_REGISTER_LINK_CSS)
@@ -19,7 +19,7 @@ class RegistrationPage(BasePage):
         # Вводим данные пользователя
         self.update_text(self.registration_page_locators.REGISTRATION_NAME_CSS, first_name)
         self.update_text(self.registration_page_locators.REGISTRATION_SURNAME_CSS, last_name)
-        self.update_text(self.registration_page_locators.REGISTRATION_PATRONYMIC_CSS, patronymic)
+        self.update_text(self.registration_page_locators.REGISTRATION_PATRONYMIC_CSS, patronymic_name)
         self.update_text(self.registration_page_locators.REGISTRATION_EMAIL_CSS, email)
         self.update_text(self.registration_page_locators.REGISTRATION_PHONE_CSS, phone)
         # Ставим чек-боксы

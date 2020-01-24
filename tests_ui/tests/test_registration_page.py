@@ -18,7 +18,7 @@ class TestRegistrationPage(RegistrationPage):
         self.get(self.app_url)
         self.fill_registration_form_fl(first_name=self.user.first_name,
                                        last_name=self.user.last_name,
-                                       patronymic=self.user.patronymic,
+                                       patronymic_name=self.user.patronymic_name,
                                        phone=self.user.phone,
                                        email=self.user.email)
         self.should_be_confirm_page()

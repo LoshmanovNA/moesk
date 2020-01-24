@@ -12,6 +12,7 @@ class BasePage(BaseCase):
     и методам фреймворка BaseCase
     """
     common_locators = CommonLocators()
+    page_404 = CommonLocators().PageNotFound()
 
     def setUp(self):
         super(BasePage, self).setUp()
@@ -27,7 +28,12 @@ class BasePage(BaseCase):
 
     def should_be_main_page_lk(self):
         """Проверка успешной авторизации"""
-        self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
+        if not self.is_element_present(self.common_locators.COMMON_PROFILE_LINK_CSS):
+            if self.find_element(self.page_404.COMMON_404_PAGE_XPATH, by='XPATH'):
+                self.click(self.common_locators.COMMON_MAIN_LOGO_CSS)
+                self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
+        else:
+            self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
 
 
 class Config:

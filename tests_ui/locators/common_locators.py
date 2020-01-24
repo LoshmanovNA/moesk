@@ -1,5 +1,6 @@
 class CommonLocators:
     """Общие локаторы для каждой страницы ЛК"""
+    COMMON_MAIN_LOGO_CSS = '.header-main_logo a'
     # Ссылка на профиль заявителя
     COMMON_PROFILE_LINK_CSS = 'a.profile-link'
     # Ссылка для логаута
@@ -26,3 +27,6 @@ class CommonLocators:
         COMMON_WARNED_BUTTON_CSS = '.login-block a[href*="/claims"]'
         # Кнопка "Вернуться на портал"
         COMMON_GO_PORTAL_BUTTON_CSS = '.login-block a[href*="/claims"]'
+
+    class PageNotFound:
+        COMMON_404_PAGE_XPATH = '//h1[contains(text(), "Ошибка 404")]'
