@@ -1,9 +1,9 @@
+import pytest
+
 from ..pages.login_page import LoginPage
 from ..pages.registration_page import RegistrationPage
-from ...helpers.user_generator import UserGenerator
 from ...helpers.db_actions import DataBase
-
-import pytest
+from ...helpers.user_generator import UserGenerator
 
 
 @pytest.mark.existing_user
@@ -24,6 +24,7 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
 
     def setUp(self):
         super(TestLoginNewUser, self).setUp()
+        #selef.user_data =
         self.user = UserGenerator()
         self.user.fake_user()
 

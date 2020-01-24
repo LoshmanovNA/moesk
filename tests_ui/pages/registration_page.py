@@ -1,3 +1,5 @@
+import allure
+
 from .base_page import BasePage
 from ..locators import LoginPageLocators, RegistrationPageLocators
 
@@ -7,6 +9,7 @@ class RegistrationPage(BasePage):
     login_page_locators = LoginPageLocators()
     registration_page_locators = RegistrationPageLocators()
 
+    @allure.step
     def fill_registration_form_fl(self, first_name='name', last_name='surname',
                                   patronymic_name='patronymic', email='email', phone='phone'):
         """Проверка регистрации заявителя вида ФЛ (Физ. лицо)"""

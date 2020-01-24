@@ -2,6 +2,7 @@ import configparser
 
 from seleniumbase import BaseCase
 from ..locators import CommonLocators
+from helpers.models.users_data import UserData
 
 
 class BasePage(BaseCase):
@@ -17,6 +18,7 @@ class BasePage(BaseCase):
     def setUp(self):
         super(BasePage, self).setUp()
         config = Config()
+        self.user_data = UserData()
         # For global environment use config['GLOBAL']
         env = config[self.env.upper()]  # Берем значение заданного окружения (TEST, PRODUCTION, etc)
         self.app_url = env['app_url']
