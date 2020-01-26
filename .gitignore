@@ -111,4 +111,4 @@ venv.bak/
 
 config.ini
 seleniumbase/config/settings.py
-helpers/user.json
+tests_ui/helpers/user.json

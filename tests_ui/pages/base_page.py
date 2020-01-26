@@ -1,5 +1,8 @@
-from config import Config
+from ...config_loader import Config
 from seleniumbase import BaseCase
+from ..models.db_model import DBModel
+from ..models.user_data import UserData
+from ..helpers.db_actions import DBManager
 from ..locators import CommonLocators
 
 
@@ -17,13 +20,23 @@ class BasePage(BaseCase):
         config = Config()
         # For global environment use config['GLOBAL']
         env = config[self.env.upper()]  # Берем значение заданного окружения (TEST, PRODUCTION, etc)
-        print(env)
+
         self.app_url = env['app_url']
-        self.user_login_fl = env['existing_user_fl']
-        self.user_login_ul = env['existing_user_ul']
-        self.user_login_ip = env['existing_user_ip']
-        self.user_pass = env['password']
-        self.user_pass_hash = env['pass_hash']
+        print(env)
+        # Создание соединения с БД
+        db = DBModel(env['db_host'],
+                     env['db_username'],
+                     env['db_password'],
+                     env['db_schema'],
+                     int(env['db_port']))
+        self.connect = DBManager(db)
+
+        # Данные тестового пользователя
+        self.user_data = UserData(user_login_fl=env['existing_user_fl'],
+                                  user_login_ul=env['existing_user_ul'],
+                                  user_login_ip=env['existing_user_ip'],
+                                  password=env['password'],
+                                  pass_hash=env['pass_hash'])
 
     def should_be_main_page_lk(self):
         """Проверка успешной авторизации"""

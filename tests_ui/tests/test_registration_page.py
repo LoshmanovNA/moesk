@@ -1,5 +1,5 @@
 from ..pages.registration_page import RegistrationPage
-from ...helpers.user_generator import UserGenerator
+from ..helpers.user_generator import UserGenerator
 
 
 class TestRegistrationPage(RegistrationPage):
@@ -7,7 +7,7 @@ class TestRegistrationPage(RegistrationPage):
 
     def setUp(self):
         super(TestRegistrationPage, self).setUp()
-        self.user = UserGenerator.fake_user()
+        self.user = UserGenerator.fake_user(self.user_data)
 
     def test_registration_form(self):
         """

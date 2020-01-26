@@ -4,6 +4,8 @@ import shutil
 import sys
 import time
 import traceback
+import allure
+from allure_commons.types import AttachmentType
 from seleniumbase.config import settings
 
 
@@ -14,8 +16,11 @@ def log_screenshot(test_logpath, driver, screenshot=None, get=False):
         if not screenshot:
             element = driver.find_element_by_tag_name('body')
             screenshot = element.screenshot_as_base64
+        allure.attach(screenshot, attachment_type=AttachmentType.PNG)
+        """
         with open(screenshot_path, "wb") as file:
             file.write(screenshot)
+        """
         if get:
             return screenshot
     except Exception:

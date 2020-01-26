@@ -21,6 +21,3 @@ class Config:
 
     def get_global_variable(self):
         return self._env['GLOBAL']
-
-a = Config()
-print(a['TEST'])
