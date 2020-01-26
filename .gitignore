@@ -108,7 +108,4 @@ venv.bak/
 /.idea
 .idea/
 
-
 config.ini
-seleniumbase/config/settings.py
-tests_ui/helpers/user.json

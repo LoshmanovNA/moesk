@@ -1,6 +1,7 @@
-from ..pages.base_page import BasePage
-from ..locators import LoginPageLocators, RegistrationPageLocators
 import allure
+
+from ..locators import LoginPageLocators, RegistrationPageLocators
+from ..pages.base_page import BasePage
 
 
 class RegistrationPage(BasePage):

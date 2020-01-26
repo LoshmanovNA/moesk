@@ -35,7 +35,7 @@ class DBManager:
         """
         self.cursor.execute(query, values)
         retval = self.cursor.fetchall()
-        self.__close_db()
+        # self.__close_db()
         return retval
 
     def query_fetch_one(self, query, values):
@@ -44,7 +44,7 @@ class DBManager:
         """
         self.cursor.execute(query, values)
         retval = self.cursor.fetchone()
-        self.__close_db()
+        # self.__close_db()
         return retval
 
     def execute_query(self, query, values):
@@ -52,10 +52,10 @@ class DBManager:
         Executes a query to the test_db and closes the connection afterwards.
         """
         retval = self.cursor.execute(query, values)
-        self.__close_db()
+        # self.__close_db()
         return retval
 
-    def __close_db(self):
+    def close_db(self):
         self.cursor.close()
         self.conn.close()
 

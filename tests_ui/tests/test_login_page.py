@@ -14,6 +14,7 @@ class TestLoginExistingUser(LoginPage):
         Авторизация под существующим пользователем и
         и проверка нахождения на главной странице ЛК
         """
+        self.get(self.app_url)
         self.login_user(self.user_data.user_login_fl,
                         self.user_data.password)  # Вводим логин и пароль
         self.should_be_main_page_lk()  # Проверям главную страницу путем поиска ссылки на профиль
@@ -33,15 +34,18 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
                                        phone=self.new_user.phone,
                                        email=self.new_user.email)
         self.should_be_confirm_page()
-        self.db.activate_new_account_db(self.user.email, self.user_pass_hash)
+        self.connect.activate_new_account_db(self.new_user.email,
+                                             self.user_data.pass_hash)
 
     def test_login_new_user(self):
         login = self.new_user.email  # Сгенерированный в setUp email
-        password = self.new_user_pass  # Пароль из конфига
+        password = self.user_data.password  # Пароль из конфига
+
         self.get(self.app_url)
         self.login_user(login, password)
         self.should_be_main_page_lk()
 
     def tearDown(self):
-        self.db.delete_new_account_from_db(self.user.email)
+        self.connect.delete_new_account_from_db(self.new_user.email)
+        self.connect
         super(TestLoginNewUser, self).tearDown()
