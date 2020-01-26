@@ -24,8 +24,7 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
 
     def setUp(self):
         super(TestLoginNewUser, self).setUp()
-        self.user = UserGenerator()
-        self.user.fake_user()
+        self.user = UserGenerator.fake_user()
 
         self.get(self.app_url)
         self.fill_registration_form_fl(first_name=self.user.first_name,

@@ -7,8 +7,7 @@ class TestRegistrationPage(RegistrationPage):
 
     def setUp(self):
         super(TestRegistrationPage, self).setUp()
-        self.user = UserGenerator()
-        self.user.fake_user()
+        self.user = UserGenerator.fake_user()
 
     def test_registration_form(self):
         """

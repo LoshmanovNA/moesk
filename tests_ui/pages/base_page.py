@@ -1,5 +1,4 @@
-import configparser
-
+from config import Config
 from seleniumbase import BaseCase
 from ..locators import CommonLocators
 
@@ -12,13 +11,13 @@ class BasePage(BaseCase):
     и методам фреймворка BaseCase
     """
     common_locators = CommonLocators()
-    page_404 = CommonLocators().PageNotFound()
 
     def setUp(self):
         super(BasePage, self).setUp()
         config = Config()
         # For global environment use config['GLOBAL']
         env = config[self.env.upper()]  # Берем значение заданного окружения (TEST, PRODUCTION, etc)
+        print(env)
         self.app_url = env['app_url']
         self.user_login_fl = env['existing_user_fl']
         self.user_login_ul = env['existing_user_ul']
@@ -35,23 +34,3 @@ class BasePage(BaseCase):
             self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
 
 
-class Config:
-    """Хранение и использование переменных окружения"""
-    _env = {}
-
-    def __init__(self, path="config.ini"):
-        config = configparser.ConfigParser()
-        config.read([path])
-        for section in config.sections():
-            self._env[section] = dict(config.items(section))
-
-    def __getitem__(self, key):
-        if key not in self._env:
-            raise Exception("'%s' key is not found in env configuration from config.ini" % key)
-        return self._env[key]
-
-    def __contains__(self, env):
-        return env in self._env
-
-    def get_global_variable(self):
-        return self._env['GLOBAL']

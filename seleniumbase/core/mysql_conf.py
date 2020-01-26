@@ -2,11 +2,13 @@
 This file organizes connection details to the Testcase Database.
 """
 
-from seleniumbase.config import settings
+from config import Config
 
 # Environments
-TEST = "test"
+env = "test"
 
+config = Config()
+creds = config[env.upper()]
 
 class Apps:
     TESTCASE_REPOSITORY = "testcase_repository"
@@ -15,12 +17,13 @@ class Apps:
 APP_CREDS = {
 
     Apps.TESTCASE_REPOSITORY: {
-        TEST: (
-            settings.DB_HOST,
-            settings.DB_USERNAME,
-            settings.DB_PASSWORD,
-            settings.DB_SCHEMA,
-            settings.DB_PORT)
+        env: (
+            creds['db_host'],
+            creds['db_username'],
+            creds['db_password'],
+            creds['db_schema'],
+            int(creds['db_port']))
     },
 
 }
+print(Apps.TESTCASE_REPOSITORY)
