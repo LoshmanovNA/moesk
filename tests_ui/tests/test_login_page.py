@@ -47,5 +47,4 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
 
     def tearDown(self):
         self.connect.delete_new_account_from_db(self.new_user.email)
-        self.connect
         super(TestLoginNewUser, self).tearDown()
