@@ -8,6 +8,7 @@ class TestRegistrationPage(RegistrationPage):
     def setUp(self):
         super(TestRegistrationPage, self).setUp()
         self.user = UserGenerator.fake_user(self.user_data)
+        self.logger.info('SetUp: Generated class with user data information')
 
     def test_registration_form(self):
         """
@@ -24,4 +25,5 @@ class TestRegistrationPage(RegistrationPage):
 
     def tearDown(self):
         self.connect.delete_new_account_from_db(self.user.email)
+        self.logger.info('TearDown: Delete new account from DB')
         super(TestRegistrationPage, self).tearDown()

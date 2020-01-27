@@ -13,6 +13,7 @@ class RegistrationPage(BasePage):
     def fill_registration_form_fl(self, first_name='name', last_name='surname',
                                   patronymic_name='patronymic', email='email', phone='phone'):
         """Проверка регистрации заявителя вида ФЛ (Физ. лицо)"""
+        self.logger.info("Start fill registration form")
         # Переходим по ссылке для регистрации
         self.click(self.login_page_locators.LOGIN_REGISTER_LINK_CSS)
         # Открываем выпадающий список Тип пользователя
@@ -31,6 +32,7 @@ class RegistrationPage(BasePage):
         self.js_click(self.registration_page_locators.REGISTRATION_CONFIRM3_CSS)
         # Кликаем кнопку продолжения регистрации
         self.click(self.registration_page_locators.REGISTRATION_NEXT_STEP_CSS)
+        self.logger.info('Finish fill registration form')
 
     @allure.step
     def should_be_confirm_page(self):
@@ -38,3 +40,4 @@ class RegistrationPage(BasePage):
         url = self.get_current_url()  # Получаем текущий url
         expected_text = 'email_sent'
         assert expected_text in url, f"Message: {url} not contains {expected_text}"
+        self.logger.info("Assertion correct. Successful registration")

@@ -1,0 +1,3 @@
+[32mINFO    [0m moesk.tests_ui.pages.base_page:base_page.py:43 Initiate data base connection
+[32mINFO    [0m moesk.tests_ui.pages.base_page:base_page.py:51 Created class with user data information
+[32mINFO    [0m moesk.tests_ui.pages.base_page:base_page.py:59 Closed data base connection

@@ -11,9 +11,11 @@ class LoginPage(BasePage):
     @allure.step
     def login_user(self, login, password):
         """Авторизация под существующим пользователем"""
+        self.logger.info(f'Start login user with login: {login}, pass: {password}')
         self.update_text(self.login_page_locators.LOGIN_INPUT_EMAIL_CSS, login)
         self.update_text(self.login_page_locators.LOGIN_INPUT_PASS_CSS, password)
         self.click(self.login_page_locators.LOGIN_SUBMIT_BUTTON_CSS)
+        self.logger.info('Finish login user')
 
     @allure.step
     def should_be_main_page_lk(self):
@@ -21,10 +23,13 @@ class LoginPage(BasePage):
         if 'assets/sprite.png' in self.get_current_url():
             self.click(self.common_locators.COMMON_MAIN_LOGO_CSS)
             self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
+            self.logger.info('Assertion correct. But after login was opened "assets/sprite.png" page.')
         else:
             self.assert_element(self.common_locators.COMMON_PROFILE_LINK_CSS)
+            self.logger.info('Assertion correct. Opened main page')
 
     @allure.step
     def should_not_login(self):
         """При незаполненным логине или пароле авторизация не должна выполниться"""
         self.assert_element(self.login_page_locators.LOGIN_WRONG_EMAIL_OR_PASS_CSS)
+        self.logger.info('Assertion correct. Got message about wrong username/password')

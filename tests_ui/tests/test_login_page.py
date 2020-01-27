@@ -26,8 +26,8 @@ class TestLoginExistingUser(LoginPage):
         и проверка нахождения на главной странице ЛК
         """
         self.get(self.app_url)
-        self.login_user(self.user_data.login,
-                        self.user_data.password)  # Вводим логин и пароль
+        self.login_user(login="",
+                        password=self.user_data.password)  # Вводим логин и пароль
         self.should_not_login()  # Проверям наличие предупреждения о некорректном логине
 
 
@@ -38,6 +38,7 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
     def setUp(self):
         """Генерируем данные для нового пользователя и выполняем регистрацию"""
         super(TestLoginNewUser, self).setUp()
+        self.logger.info("SetUp: Start pre-registration")
         self.new_user = UserGenerator.fake_user(self.user_data)  # Генерируем класс с тестовыми данными для регистрации
 
         self.get(self.app_url)
@@ -47,8 +48,10 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
                                        phone=self.new_user.phone,
                                        email=self.new_user.email)
         self.should_be_confirm_page()  # Проверяем, что находимся на странице подтверждения успешной регистрации
+        self.logger.info("SetUp: Finish pre-registration")
         self.connect.activate_new_account_db(self.new_user.email,
                                              self.user_data.pass_hash)  # Активируем УЗ заполнением нужных полей в БД
+        self.logger.info("SetUp: New account has activated into DB")
 
     def test_login_new_user(self):
         login = self.new_user.email  # Сгенерированный в setUp email
@@ -60,4 +63,5 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
 
     def tearDown(self):
         self.connect.delete_new_account_from_db(self.new_user.email)
+        self.logger.info('TearDown: Delete new account from DB')
         super(TestLoginNewUser, self).tearDown()

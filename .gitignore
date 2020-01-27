@@ -109,3 +109,4 @@ venv.bak/
 .idea/
 
 config.ini
+logs/
