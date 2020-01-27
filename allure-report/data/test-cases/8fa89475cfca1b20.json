@@ -1,0 +1,213 @@
+{
+  "uid" : "8fa89475cfca1b20",
+  "name" : "test_registration_form",
+  "fullName" : "tests_ui.tests.test_registration_page.TestRegistrationPage#test_registration_form",
+  "historyId" : "90244e8ae0d213be40fd2c6c3f382c4b",
+  "time" : {
+    "start" : 1580112399583,
+    "stop" : 1580112412756,
+    "duration" : 13173
+  },
+  "description" : "\n        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n        подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n        ",
+  "descriptionHtml" : "<pre><code>    Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n    подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1580112399581,
+      "stop" : 1580112399582,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "\n        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n        подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n        ",
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "fill_registration_form_fl",
+      "time" : {
+        "start" : 1580112405427,
+        "stop" : 1580112410399,
+        "duration" : 4972
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "first_name",
+        "value" : "'Наркис'"
+      }, {
+        "name" : "last_name",
+        "value" : "'Кулаков'"
+      }, {
+        "name" : "patronymic_name",
+        "value" : "'Сергеевна'"
+      }, {
+        "name" : "email",
+        "value" : "'nikandr_2012@ip.net'"
+      }, {
+        "name" : "phone",
+        "value" : "'99851234567'"
+      } ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    }, {
+      "name" : "should_be_confirm_page",
+      "time" : {
+        "start" : 1580112410400,
+        "stop" : 1580112410409,
+        "duration" : 9
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 2,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1580112412758,
+      "stop" : 1580112412758,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "tests_ui.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_registration_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRegistrationPage"
+  }, {
+    "name" : "host",
+    "value" : "LoshmanovNA-PC"
+  }, {
+    "name" : "thread",
+    "value" : "10792-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests_ui.tests.test_registration_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "466b9752a2a1d298",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580112163460,
+        "stop" : 1580112176289,
+        "duration" : 12829
+      }
+    }, {
+      "uid" : "a866c5c8d6201d2d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580111332043,
+        "stop" : 1580111345117,
+        "duration" : 13074
+      }
+    }, {
+      "uid" : "c973fcb56c39c33",
+      "status" : "broken",
+      "statusDetails" : "KeyError: 'db_host'",
+      "time" : {
+        "start" : 1580111040554,
+        "stop" : 1580111044468,
+        "duration" : 3914
+      }
+    }, {
+      "uid" : "2cbe906581c3c005",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580070283125,
+        "stop" : 1580070293403,
+        "duration" : 10278
+      }
+    }, {
+      "uid" : "861f0271f802a1e",
+      "status" : "broken",
+      "statusDetails" : "Exception: Unable to connect to Database after 3 retries.",
+      "time" : {
+        "start" : 1580061071661,
+        "stop" : 1580061077760,
+        "duration" : 6099
+      }
+    }, {
+      "uid" : "e7009cbd91124147",
+      "status" : "broken",
+      "statusDetails" : "TypeError: string indices must be integers",
+      "time" : {
+        "start" : 1580060729531,
+        "stop" : 1580060732432,
+        "duration" : 2901
+      }
+    }, {
+      "uid" : "f04b011291feb365",
+      "status" : "broken",
+      "statusDetails" : "TypeError: string indices must be integers",
+      "time" : {
+        "start" : 1580060635317,
+        "stop" : 1580060637667,
+        "duration" : 2350
+      }
+    }, {
+      "uid" : "81d4994d2ef234d3",
+      "status" : "broken",
+      "statusDetails" : "TypeError: string indices must be integers",
+      "time" : {
+        "start" : 1580060528159,
+        "stop" : 1580060531545,
+        "duration" : 3386
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "8fa89475cfca1b20.json",
+  "parameterValues" : [ ]
+}

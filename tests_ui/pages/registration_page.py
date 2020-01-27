@@ -32,6 +32,7 @@ class RegistrationPage(BasePage):
         # Кликаем кнопку продолжения регистрации
         self.click(self.registration_page_locators.REGISTRATION_NEXT_STEP_CSS)
 
+    @allure.step
     def should_be_confirm_page(self):
         """Проверяем, что находимся на странице с информацией об отправке email"""
         url = self.get_current_url()  # Получаем текущий url

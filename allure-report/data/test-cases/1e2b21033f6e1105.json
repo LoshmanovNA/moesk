@@ -1,5 +1,5 @@
 {
-  "uid" : "bc6d46e0607596de",
+  "uid" : "1e2b21033f6e1105",
   "name" : "test_login",
   "fullName" : "tests_api.tests.test_login#test_login",
   "historyId" : "e9007b3c9eb0c43cc15689ad4e592c75",
@@ -31,16 +31,16 @@
       "steps" : [ ],
       "attachments" : [ ],
       "parameters" : [ ],
-      "stepsCount" : 0,
-      "attachmentsCount" : 0,
       "shouldDisplayMessage" : true,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
       "hasContent" : true
     } ],
     "attachments" : [ ],
     "parameters" : [ ],
-    "stepsCount" : 1,
-    "attachmentsCount" : 0,
     "shouldDisplayMessage" : true,
+    "attachmentsCount" : 0,
+    "stepsCount" : 1,
     "hasContent" : true
   },
   "afterStages" : [ ],
@@ -77,6 +77,6 @@
     "categories" : [ ],
     "tags" : [ ]
   },
-  "source" : "bc6d46e0607596de.json",
+  "source" : "1e2b21033f6e1105.json",
   "parameterValues" : [ ]
 }

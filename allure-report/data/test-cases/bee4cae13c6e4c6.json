@@ -1,0 +1,121 @@
+{
+  "uid" : "bee4cae13c6e4c6",
+  "name" : "test_login_existing_user",
+  "fullName" : "tests_ui.tests.test_login_page.TestLoginExistingUser#test_login_existing_user",
+  "historyId" : "45fe1bec4d06361a86a2e8826ab10fa9",
+  "time" : {
+    "start" : 1580070648288,
+    "stop" : 1580070663870,
+    "duration" : 15582
+  },
+  "description" : "\n        Авторизация под существующим пользователем и\n        и проверка нахождения на главной странице ЛК\n        ",
+  "descriptionHtml" : "<pre><code>    Авторизация под существующим пользователем и\n    и проверка нахождения на главной странице ЛК\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1580070648286,
+      "stop" : 1580070648286,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "\n        Авторизация под существующим пользователем и\n        и проверка нахождения на главной странице ЛК\n        ",
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "login_user",
+      "time" : {
+        "start" : 1580070653008,
+        "stop" : 1580070663678,
+        "duration" : 10670
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "login",
+        "value" : "'user@user.user'"
+      }, {
+        "name" : "password",
+        "value" : "'!Q2w3e4r5t'"
+      } ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 1,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1580070663879,
+      "stop" : 1580070663879,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "existing_user"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests_ui.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_login_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLoginExistingUser"
+  }, {
+    "name" : "host",
+    "value" : "MacBook-Air.local"
+  }, {
+    "name" : "thread",
+    "value" : "19290-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests_ui.tests.test_login_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "existing_user" ]
+  },
+  "source" : "bee4cae13c6e4c6.json",
+  "parameterValues" : [ ]
+}

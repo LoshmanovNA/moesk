@@ -1,0 +1,142 @@
+{
+  "uid" : "466b9752a2a1d298",
+  "name" : "test_registration_form",
+  "fullName" : "tests_ui.tests.test_registration_page.TestRegistrationPage#test_registration_form",
+  "historyId" : "90244e8ae0d213be40fd2c6c3f382c4b",
+  "time" : {
+    "start" : 1580112163460,
+    "stop" : 1580112176289,
+    "duration" : 12829
+  },
+  "description" : "\n        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n        подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n        ",
+  "descriptionHtml" : "<pre><code>    Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n    подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1580112163456,
+      "stop" : 1580112163457,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "\n        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n        подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n        ",
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "fill_registration_form_fl",
+      "time" : {
+        "start" : 1580112168848,
+        "stop" : 1580112173845,
+        "duration" : 4997
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "first_name",
+        "value" : "'Нестор'"
+      }, {
+        "name" : "last_name",
+        "value" : "'Гурьев'"
+      }, {
+        "name" : "patronymic_name",
+        "value" : "'Юльевич'"
+      }, {
+        "name" : "email",
+        "value" : "'solomon_90@turova.ru'"
+      }, {
+        "name" : "phone",
+        "value" : "'99851234567'"
+      } ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    }, {
+      "name" : "should_be_confirm_page",
+      "time" : {
+        "start" : 1580112173845,
+        "stop" : 1580112173853,
+        "duration" : 8
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 2,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1580112176294,
+      "stop" : 1580112176294,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "tests_ui.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_registration_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRegistrationPage"
+  }, {
+    "name" : "host",
+    "value" : "LoshmanovNA-PC"
+  }, {
+    "name" : "thread",
+    "value" : "12508-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests_ui.tests.test_registration_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "466b9752a2a1d298.json",
+  "parameterValues" : [ ]
+}

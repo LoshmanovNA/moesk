@@ -1,2 +1,11 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Thu Jan 09 22:24:06 MSK 2020","Thu Jan 09 22:24:06 MSK 2020","197","tests_api.tests","test_login","","","","test_login",""
+"passed","Mon Jan 27 11:06:39 MSK 2020","Mon Jan 27 11:06:52 MSK 2020","13173","tests_ui.tests","test_registration_page","TestRegistrationPage","","","test_registration_form","
+        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу
+        подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД
+        "
+"passed","Mon Jan 27 11:06:25 MSK 2020","Mon Jan 27 11:06:39 MSK 2020","14390","tests_ui.tests","test_login_page","TestLoginNewUser","","","test_login_new_user",""
+"passed","Fri Jan 10 09:59:56 MSK 2020","Fri Jan 10 09:59:57 MSK 2020","194","tests_api.tests","test_login","","","","test_login",""
+"passed","Mon Jan 27 11:06:14 MSK 2020","Mon Jan 27 11:06:25 MSK 2020","10767","tests_ui.tests","test_login_page","TestLoginExistingUser","","","test_login_existing_user","
+        Авторизация под существующим пользователем и
+        и проверка нахождения на главной странице ЛК
+        "

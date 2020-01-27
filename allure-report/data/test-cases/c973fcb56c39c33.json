@@ -1,0 +1,118 @@
+{
+  "uid" : "c973fcb56c39c33",
+  "name" : "test_registration_form",
+  "fullName" : "tests_ui.tests.test_registration_page.TestRegistrationPage#test_registration_form",
+  "historyId" : "90244e8ae0d213be40fd2c6c3f382c4b",
+  "time" : {
+    "start" : 1580111040554,
+    "stop" : 1580111044468,
+    "duration" : 3914
+  },
+  "description" : "\n        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n        подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n        ",
+  "descriptionHtml" : "<pre><code>    Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n    подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n</code></pre>\n",
+  "status" : "broken",
+  "statusMessage" : "KeyError: 'db_host'",
+  "statusTrace" : "self = <moesk.tests_ui.tests.test_registration_page.TestRegistrationPage testMethod=test_registration_form>\n\n    @allure.step\n    def setUp(self):\n>       super(TestRegistrationPage, self).setUp()\n\ntests_ui\\tests\\test_registration_page.py:12: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <moesk.tests_ui.tests.test_registration_page.TestRegistrationPage testMethod=test_registration_form>\n\n    def setUp(self):\n        \"\"\"\n        Действия перед выполнением тестов:\n        - парсим config.ini,\n        - создаем соединение с БД,\n        - создаем класс с пользовательскими тестовыми данными\n        \"\"\"\n        super(BasePage, self).setUp()\n    \n        config = Config()\n        # For global environment use config['GLOBAL']\n        env = config[self.env.upper()]  # Берем значение заданного окружения (TEST, PRODUCTION, etc)\n    \n        self.app_url = env['app_url']\n    \n        # Создание соединения с БД\n>       db_credentials = DBModel(env['db_host'],\n                                 env['db_username'],\n                                 env['db_password'],\n                                 env['db_schema'],\n                                 int(env['db_port']))\nE       KeyError: 'db_host'\n\ntests_ui\\pages\\base_page.py:34: KeyError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1580111040553,
+      "stop" : 1580111040553,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "\n        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n        подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n        ",
+    "status" : "broken",
+    "statusMessage" : "KeyError: 'db_host'",
+    "statusTrace" : "self = <moesk.tests_ui.tests.test_registration_page.TestRegistrationPage testMethod=test_registration_form>\n\n    @allure.step\n    def setUp(self):\n>       super(TestRegistrationPage, self).setUp()\n\ntests_ui\\tests\\test_registration_page.py:12: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <moesk.tests_ui.tests.test_registration_page.TestRegistrationPage testMethod=test_registration_form>\n\n    def setUp(self):\n        \"\"\"\n        Действия перед выполнением тестов:\n        - парсим config.ini,\n        - создаем соединение с БД,\n        - создаем класс с пользовательскими тестовыми данными\n        \"\"\"\n        super(BasePage, self).setUp()\n    \n        config = Config()\n        # For global environment use config['GLOBAL']\n        env = config[self.env.upper()]  # Берем значение заданного окружения (TEST, PRODUCTION, etc)\n    \n        self.app_url = env['app_url']\n    \n        # Создание соединения с БД\n>       db_credentials = DBModel(env['db_host'],\n                                 env['db_username'],\n                                 env['db_password'],\n                                 env['db_schema'],\n                                 int(env['db_port']))\nE       KeyError: 'db_host'\n\ntests_ui\\pages\\base_page.py:34: KeyError",
+    "steps" : [ {
+      "name" : "setUp",
+      "time" : {
+        "start" : 1580111040554,
+        "stop" : 1580111044467,
+        "duration" : 3913
+      },
+      "status" : "broken",
+      "statusMessage" : "KeyError: 'db_host'\n",
+      "statusTrace" : "  File \"C:\\GitHub\\moesk\\env\\lib\\site-packages\\allure_commons\\_allure.py\", line 157, in impl\n    return func(*a, **kw)\n  File \"C:\\GitHub\\moesk\\tests_ui\\tests\\test_registration_page.py\", line 12, in setUp\n    super(TestRegistrationPage, self).setUp()\n  File \"C:\\GitHub\\moesk\\tests_ui\\pages\\base_page.py\", line 34, in setUp\n    db_credentials = DBModel(env['db_host'],\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : true,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : true,
+    "attachmentsCount" : 0,
+    "stepsCount" : 1,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1580111046867,
+      "stop" : 1580111046867,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "tests_ui.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_registration_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRegistrationPage"
+  }, {
+    "name" : "host",
+    "value" : "LoshmanovNA-PC"
+  }, {
+    "name" : "thread",
+    "value" : "19572-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests_ui.tests.test_registration_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "c973fcb56c39c33.json",
+  "parameterValues" : [ ]
+}

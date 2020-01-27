@@ -1,0 +1,88 @@
+{
+  "uid" : "861f0271f802a1e",
+  "name" : "test_registration_form",
+  "fullName" : "tests_ui.tests.test_registration_page.TestRegistrationPage#test_registration_form",
+  "historyId" : "90244e8ae0d213be40fd2c6c3f382c4b",
+  "time" : {
+    "start" : 1580061071661,
+    "stop" : 1580061077760,
+    "duration" : 6099
+  },
+  "description" : "\n        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n        подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n        ",
+  "descriptionHtml" : "<pre><code>    Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу\n    подтверждения регистрации, проверяем наличие нового email в БД, удаляем новую УЗ из БД\n</code></pre>\n",
+  "status" : "broken",
+  "statusMessage" : "Exception: Unable to connect to Database after 3 retries.",
+  "statusTrace" : "self = <moesk.tests_ui.tests.test_registration_page.TestRegistrationPage testMethod=test_registration_form>\n\n    def setUp(self):\n>       super(TestRegistrationPage, self).setUp()\n\ntests_ui/tests/test_registration_page.py:9: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\ntests_ui/pages/base_page.py:32: in setUp\n    self.connect = DBManager(db)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <moesk.tests_ui.helpers.db_actions.DBManager object at 0x10a017390>, DBModel = <moesk.tests_ui.models.db_model.DBModel object at 0x10a0179d0>\n\n    def __init__(self, DBModel):\n        \"\"\"\n        Gets database information from mysql_conf.py and creates a connection.\n        \"\"\"\n        import pymysql\n    \n        retry_count = 3\n        backoff = 1.2  # Time to wait (in seconds) between retries.\n        count = 0\n        while count < retry_count:\n            try:\n                self.conn = pymysql.connect(host=DBModel.db_server,\n                                            user=DBModel.db_user,\n                                            passwd=DBModel.db_pass,\n                                            db=DBModel.db_schema,\n                                            port=DBModel.db_port)\n                self.conn.autocommit(True)\n                self.cursor = self.conn.cursor()\n                return\n            except Exception:\n                time.sleep(backoff)\n                count = count + 1\n        if retry_count == 3:\n>           raise Exception(\"Unable to connect to Database after 3 retries.\")\nE           Exception: Unable to connect to Database after 3 retries.\n\ntests_ui/helpers/db_actions.py:30: Exception",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1580061071660,
+      "stop" : 1580061071660,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1580061077985,
+      "stop" : 1580061077985,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "tests_ui.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_registration_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRegistrationPage"
+  }, {
+    "name" : "host",
+    "value" : "MacBook-Air.local"
+  }, {
+    "name" : "thread",
+    "value" : "18079-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests_ui.tests.test_registration_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "861f0271f802a1e.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,178 @@
+{
+  "uid" : "69e76a92f537f5d3",
+  "name" : "test_login_new_user",
+  "fullName" : "tests_ui.tests.test_login_page.TestLoginNewUser#test_login_new_user",
+  "historyId" : "3cc973731901ebddb6ca4ad47861a0bd",
+  "time" : {
+    "start" : 1580112146439,
+    "stop" : 1580112163419,
+    "duration" : 16980
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1580112146438,
+      "stop" : 1580112146438,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "fill_registration_form_fl",
+      "time" : {
+        "start" : 1580112152473,
+        "stop" : 1580112157638,
+        "duration" : 5165
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "first_name",
+        "value" : "'Рюрик'"
+      }, {
+        "name" : "last_name",
+        "value" : "'Новиков'"
+      }, {
+        "name" : "patronymic_name",
+        "value" : "'Ильич'"
+      }, {
+        "name" : "email",
+        "value" : "'ladimir_1992@npo.net'"
+      }, {
+        "name" : "phone",
+        "value" : "'99851234567'"
+      } ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    }, {
+      "name" : "should_be_confirm_page",
+      "time" : {
+        "start" : 1580112157638,
+        "stop" : 1580112157646,
+        "duration" : 8
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "login_user",
+      "time" : {
+        "start" : 1580112158106,
+        "stop" : 1580112159436,
+        "duration" : 1330
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "login",
+        "value" : "'ladimir_1992@npo.net'"
+      }, {
+        "name" : "password",
+        "value" : "'!Q2w3e4r5t'"
+      } ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    }, {
+      "name" : "should_be_main_page_lk",
+      "time" : {
+        "start" : 1580112159437,
+        "stop" : 1580112160152,
+        "duration" : 715
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 4,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1580112163424,
+      "stop" : 1580112163424,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "new_user"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests_ui.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_login_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLoginNewUser"
+  }, {
+    "name" : "host",
+    "value" : "LoshmanovNA-PC"
+  }, {
+    "name" : "thread",
+    "value" : "12508-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests_ui.tests.test_login_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "new_user" ]
+  },
+  "source" : "69e76a92f537f5d3.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,86 @@
+{
+  "uid" : "d5dfd7fb220572",
+  "name" : "test_login",
+  "fullName" : "tests_api.tests.test_login#test_login",
+  "historyId" : "e9007b3c9eb0c43cc15689ad4e592c75",
+  "time" : {
+    "start" : 1578581419539,
+    "stop" : 1578581419683,
+    "duration" : 144
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 300 == 200\n  -300\n  +200",
+  "statusTrace" : "def test_login():\n        result = Api.login()\n>       assert 300 == result.status_code\nE       assert 300 == 200\nE         -300\nE         +200\n\ntests_api\\tests\\test_login.py:8: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert 300 == 200\n  -300\n  +200",
+    "statusTrace" : "def test_login():\n        result = Api.login()\n>       assert 300 == result.status_code\nE       assert 300 == 200\nE         -300\nE         +200\n\ntests_api\\tests\\test_login.py:8: AssertionError",
+    "steps" : [ {
+      "name" : "Login",
+      "time" : {
+        "start" : 1578581419539,
+        "stop" : 1578581419681,
+        "duration" : 142
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "6c92e649e7b92fa",
+      "name" : "log",
+      "source" : "6c92e649e7b92fa.txt",
+      "type" : "text/plain",
+      "size" : 109
+    } ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : true,
+    "attachmentsCount" : 1,
+    "stepsCount" : 1,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "tests_api.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_login"
+  }, {
+    "name" : "host",
+    "value" : "LoshmanovNA-PC"
+  }, {
+    "name" : "thread",
+    "value" : "3260-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests_api.tests.test_login"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "d5dfd7fb220572.json",
+  "parameterValues" : [ ]
+}

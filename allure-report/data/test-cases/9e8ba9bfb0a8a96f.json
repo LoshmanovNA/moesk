@@ -1,0 +1,152 @@
+{
+  "uid" : "9e8ba9bfb0a8a96f",
+  "name" : "test_login_new_user",
+  "fullName" : "tests_ui.tests.test_login_page.TestLoginNewUser#test_login_new_user",
+  "historyId" : "3cc973731901ebddb6ca4ad47861a0bd",
+  "time" : {
+    "start" : 1580070959878,
+    "stop" : 1580070968190,
+    "duration" : 8312
+  },
+  "status" : "broken",
+  "statusMessage" : "pymysql.err.ProgrammingError: Cursor closed",
+  "statusTrace" : "self = <moesk.tests_ui.tests.test_login_page.TestLoginNewUser testMethod=test_login_new_user>\n\n    def tearDown(self):\n>       self.connect.delete_new_account_from_db(self.new_user.email)\n\ntests_ui/tests/test_login_page.py:49: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\ntests_ui/helpers/db_actions.py:72: in delete_new_account_from_db\n    self.execute_query(sql_1, email)\ntests_ui/helpers/db_actions.py:54: in execute_query\n    retval = self.cursor.execute(query, values)\nenv/lib/python3.7/site-packages/pymysql/cursors.py:165: in execute\n    while self.nextset():\nenv/lib/python3.7/site-packages/pymysql/cursors.py:107: in nextset\n    return self._nextset(False)\nenv/lib/python3.7/site-packages/pymysql/cursors.py:91: in _nextset\n    conn = self._get_db()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <pymysql.cursors.Cursor object at 0x10d98d8d0>\n\n    def _get_db(self):\n        if not self.connection:\n>           raise err.ProgrammingError(\"Cursor closed\")\nE           pymysql.err.ProgrammingError: Cursor closed\n\nenv/lib/python3.7/site-packages/pymysql/cursors.py:73: ProgrammingError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1580070959875,
+      "stop" : 1580070959875,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "pymysql.err.ProgrammingError: Cursor closed",
+    "statusTrace" : "self = <moesk.tests_ui.tests.test_login_page.TestLoginNewUser testMethod=test_login_new_user>\n\n    def tearDown(self):\n>       self.connect.delete_new_account_from_db(self.new_user.email)\n\ntests_ui/tests/test_login_page.py:49: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\ntests_ui/helpers/db_actions.py:72: in delete_new_account_from_db\n    self.execute_query(sql_1, email)\ntests_ui/helpers/db_actions.py:54: in execute_query\n    retval = self.cursor.execute(query, values)\nenv/lib/python3.7/site-packages/pymysql/cursors.py:165: in execute\n    while self.nextset():\nenv/lib/python3.7/site-packages/pymysql/cursors.py:107: in nextset\n    return self._nextset(False)\nenv/lib/python3.7/site-packages/pymysql/cursors.py:91: in _nextset\n    conn = self._get_db()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <pymysql.cursors.Cursor object at 0x10d98d8d0>\n\n    def _get_db(self):\n        if not self.connection:\n>           raise err.ProgrammingError(\"Cursor closed\")\nE           pymysql.err.ProgrammingError: Cursor closed\n\nenv/lib/python3.7/site-packages/pymysql/cursors.py:73: ProgrammingError",
+    "steps" : [ {
+      "name" : "fill_registration_form_fl",
+      "time" : {
+        "start" : 1580070963518,
+        "stop" : 1580070966654,
+        "duration" : 3136
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "first_name",
+        "value" : "'Антонина'"
+      }, {
+        "name" : "last_name",
+        "value" : "'Козлова'"
+      }, {
+        "name" : "patronymic_name",
+        "value" : "'Натановна'"
+      }, {
+        "name" : "email",
+        "value" : "'pevdokimova@hotmail.com'"
+      }, {
+        "name" : "phone",
+        "value" : "'99851234567'"
+      } ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    }, {
+      "name" : "login_user",
+      "time" : {
+        "start" : 1580070966892,
+        "stop" : 1580070967763,
+        "duration" : 871
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "login",
+        "value" : "'pevdokimova@hotmail.com'"
+      }, {
+        "name" : "password",
+        "value" : "'!Q2w3e4r5t'"
+      } ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : true,
+    "attachmentsCount" : 0,
+    "stepsCount" : 2,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1580070968524,
+      "stop" : 1580070968524,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "new_user"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests_ui.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_login_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLoginNewUser"
+  }, {
+    "name" : "host",
+    "value" : "MacBook-Air.local"
+  }, {
+    "name" : "thread",
+    "value" : "19452-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests_ui.tests.test_login_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "new_user" ]
+  },
+  "source" : "9e8ba9bfb0a8a96f.json",
+  "parameterValues" : [ ]
+}

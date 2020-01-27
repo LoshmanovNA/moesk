@@ -21,3 +21,7 @@ class TestRegistrationPage(RegistrationPage):
                                        phone=self.user.phone,
                                        email=self.user.email)
         self.should_be_confirm_page()
+
+    def tearDown(self):
+        self.connect.delete_new_account_from_db(self.user.email)
+        super(TestRegistrationPage, self).tearDown()

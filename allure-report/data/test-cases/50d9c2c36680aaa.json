@@ -1,0 +1,258 @@
+{
+  "uid" : "50d9c2c36680aaa",
+  "name" : "test_login_new_user",
+  "fullName" : "tests_ui.tests.test_login_page.TestLoginNewUser#test_login_new_user",
+  "historyId" : "3cc973731901ebddb6ca4ad47861a0bd",
+  "time" : {
+    "start" : 1580112385168,
+    "stop" : 1580112399558,
+    "duration" : 14390
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1580112385167,
+      "stop" : 1580112385167,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "fill_registration_form_fl",
+      "time" : {
+        "start" : 1580112390738,
+        "stop" : 1580112394923,
+        "duration" : 4185
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "first_name",
+        "value" : "'Мстислав'"
+      }, {
+        "name" : "last_name",
+        "value" : "'Елисеев'"
+      }, {
+        "name" : "patronymic_name",
+        "value" : "'Витальевич'"
+      }, {
+        "name" : "email",
+        "value" : "'fedotlitkin@npo.org'"
+      }, {
+        "name" : "phone",
+        "value" : "'99851234567'"
+      } ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    }, {
+      "name" : "should_be_confirm_page",
+      "time" : {
+        "start" : 1580112394924,
+        "stop" : 1580112394932,
+        "duration" : 8
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "login_user",
+      "time" : {
+        "start" : 1580112395318,
+        "stop" : 1580112396580,
+        "duration" : 1262
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "login",
+        "value" : "'fedotlitkin@npo.org'"
+      }, {
+        "name" : "password",
+        "value" : "'!Q2w3e4r5t'"
+      } ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : true
+    }, {
+      "name" : "should_be_main_page_lk",
+      "time" : {
+        "start" : 1580112396581,
+        "stop" : 1580112397228,
+        "duration" : 647
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 4,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1580112399561,
+      "stop" : 1580112399561,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "new_user"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests_ui.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_login_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLoginNewUser"
+  }, {
+    "name" : "host",
+    "value" : "LoshmanovNA-PC"
+  }, {
+    "name" : "thread",
+    "value" : "10792-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests_ui.tests.test_login_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "69e76a92f537f5d3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580112146439,
+        "stop" : 1580112163419,
+        "duration" : 16980
+      }
+    }, {
+      "uid" : "359efbc8dc9e7f14",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580111316051,
+        "stop" : 1580111332006,
+        "duration" : 15955
+      }
+    }, {
+      "uid" : "de36046ab3fffff8",
+      "status" : "broken",
+      "statusDetails" : "KeyError: 'db_host'",
+      "time" : {
+        "start" : 1580111034246,
+        "stop" : 1580111038126,
+        "duration" : 3880
+      }
+    }, {
+      "uid" : "c39fe68da39ffeff",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580071557200,
+        "stop" : 1580071565331,
+        "duration" : 8131
+      }
+    }, {
+      "uid" : "9e8ba9bfb0a8a96f",
+      "status" : "broken",
+      "statusDetails" : "pymysql.err.ProgrammingError: Cursor closed",
+      "time" : {
+        "start" : 1580070959878,
+        "stop" : 1580070968190,
+        "duration" : 8312
+      }
+    }, {
+      "uid" : "7d2d6bdc6b438c71",
+      "status" : "broken",
+      "statusDetails" : "AttributeError: 'TestLoginNewUser' object has no attribute 'new_user_pass_hash'",
+      "time" : {
+        "start" : 1580070770999,
+        "stop" : 1580070777653,
+        "duration" : 6654
+      }
+    }, {
+      "uid" : "b739eafab436a6de",
+      "status" : "broken",
+      "statusDetails" : "AttributeError: 'TestLoginNewUser' object has no attribute 'user'",
+      "time" : {
+        "start" : 1580070731366,
+        "stop" : 1580070737489,
+        "duration" : 6123
+      }
+    }, {
+      "uid" : "9db6528e397aed8b",
+      "status" : "broken",
+      "statusDetails" : "AttributeError: 'TestLoginNewUser' object has no attribute 'db'",
+      "time" : {
+        "start" : 1580070679254,
+        "stop" : 1580070685538,
+        "duration" : 6284
+      }
+    }, {
+      "uid" : "ca3e34bba2a594f8",
+      "status" : "broken",
+      "statusDetails" : "AttributeError: 'TestLoginNewUser' object has no attribute 'db'",
+      "time" : {
+        "start" : 1580070334742,
+        "stop" : 1580070341475,
+        "duration" : 6733
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "new_user" ]
+  },
+  "source" : "50d9c2c36680aaa.json",
+  "parameterValues" : [ ]
+}

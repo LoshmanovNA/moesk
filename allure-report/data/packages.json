@@ -5,18 +5,69 @@
     "name" : "tests_api.tests.test_login",
     "children" : [ {
       "name" : "test_login",
-      "uid" : "c9f6177cb021a108",
+      "uid" : "1c1d2ea744cb5756",
       "parentUid" : "c657875ccce13a619e39e38488219fbc",
-      "status" : "failed",
+      "status" : "passed",
       "time" : {
-        "start" : 1578597846150,
-        "stop" : 1578597846347,
-        "duration" : 197
+        "start" : 1578639596875,
+        "stop" : 1578639597069,
+        "duration" : 194
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ ]
     } ],
     "uid" : "tests_api.tests.test_login"
+  }, {
+    "name" : "tests_ui.tests",
+    "children" : [ {
+      "name" : "test_login_page",
+      "children" : [ {
+        "name" : "test_login_existing_user",
+        "uid" : "f1d72db5b6d272e2",
+        "parentUid" : "73babff5721b818b705ae782085567a8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1580112374370,
+          "stop" : 1580112385137,
+          "duration" : 10767
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_new_user",
+        "uid" : "50d9c2c36680aaa",
+        "parentUid" : "73babff5721b818b705ae782085567a8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1580112385168,
+          "stop" : 1580112399558,
+          "duration" : 14390
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "73babff5721b818b705ae782085567a8"
+    }, {
+      "name" : "test_registration_page",
+      "children" : [ {
+        "name" : "test_registration_form",
+        "uid" : "8fa89475cfca1b20",
+        "parentUid" : "2064434baeebaaab2affccf68ff78e82",
+        "status" : "passed",
+        "time" : {
+          "start" : 1580112399583,
+          "stop" : 1580112412756,
+          "duration" : 13173
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "2064434baeebaaab2affccf68ff78e82"
+    } ],
+    "uid" : "tests_ui.tests"
   } ]
 }
