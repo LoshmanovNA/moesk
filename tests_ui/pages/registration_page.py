@@ -1,7 +1,7 @@
-import allure
-from selenium.common.exceptions import ElementNotVisibleException
 from ..locators import LoginPageLocators, RegistrationPageLocators
 from ..pages.base_page import BasePage
+
+import allure
 
 
 class RegistrationPage(BasePage):

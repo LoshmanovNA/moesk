@@ -112,3 +112,5 @@ config.ini
 logs/
 reports/
 allure-report
+latest_logs
+archived_logs

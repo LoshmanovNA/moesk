@@ -5,8 +5,9 @@ import sys
 import time
 import traceback
 import allure
-from allure_commons.types import AttachmentType
+import enum
 from seleniumbase.config import settings
+from allure_commons.types import AttachmentType
 
 
 def log_screenshot(test_logpath, driver, screenshot=None, get=False):
@@ -17,10 +18,10 @@ def log_screenshot(test_logpath, driver, screenshot=None, get=False):
             element = driver.find_element_by_tag_name('body')
             screenshot = element.screenshot_as_base64
         allure.attach(screenshot, attachment_type=AttachmentType.PNG)
-        """
+        '''
         with open(screenshot_path, "wb") as file:
             file.write(screenshot)
-        """
+        '''
         if get:
             return screenshot
     except Exception:
@@ -33,12 +34,13 @@ def log_screenshot(test_logpath, driver, screenshot=None, get=False):
 def log_test_failure_data(test, test_logpath, driver, browser):
     basic_info_name = settings.BASIC_INFO_NAME
     basic_file_path = "%s/%s" % (test_logpath, basic_info_name)
+    '''
     log_file = codecs.open(basic_file_path, "w+", "utf-8")
+    '''
     last_page = get_last_page(driver)
     data_to_save = []
-    data_to_save.append("Last Page: %s" % last_page)
-    data_to_save.append("  Browser: %s" % browser)
-    data_to_save.append("Timestamp: %s" % int(time.time()))
+    data_to_save.append("Last_Page: %s" % last_page)
+    data_to_save.append("Browser: %s " % browser)
     if sys.version_info[0] >= 3 and hasattr(test, '_outcome'):
         if test._outcome.errors:
             try:
@@ -57,8 +59,11 @@ def log_test_failure_data(test, test_logpath, driver, browser):
             traceback.format_exception(sys.exc_info()[0],
                                        sys.exc_info()[1],
                                        sys.exc_info()[2])))
+    allure.attach("\r\n".join(data_to_save), attachment_type=AttachmentType.TEXT)
+    '''
     log_file.writelines("\r\n".join(data_to_save))
     log_file.close()
+    '''
 
 
 def log_page_source(test_logpath, driver):
@@ -69,10 +74,15 @@ def log_page_source(test_logpath, driver):
         # Since we can't get the page source from here, skip saving it
         return
     html_file_path = "%s/%s" % (test_logpath, html_file_name)
+    '''
     html_file = codecs.open(html_file_path, "w+", "utf-8")
+    '''
     rendered_source = get_html_source_with_base_href(driver, page_source)
+    allure.attach("\r\n".join(rendered_source), attachment_type=AttachmentType.HTML)
+    '''
     html_file.write(rendered_source)
     html_file.close()
+    '''
 
 
 def get_last_page(driver):
@@ -157,30 +167,39 @@ def log_folder_setup(log_path, archive_logs=False):
     if log_path.endswith("/"):
         log_path = log_path[:-1]
     if not os.path.exists(log_path):
+        '''
         try:
-            os.makedirs(log_path)
+            #os.makedirs(log_path)
         except Exception:
             pass  # Should only be reachable during multi-threaded runs
+        '''
     else:
         archived_folder = "%s/../archived_logs/" % log_path
-        archived_folder = os.path.realpath(archived_folder) + '/'
         if not os.path.exists(archived_folder):
             try:
                 os.makedirs(archived_folder)
             except Exception:
                 pass  # Should only be reachable during multi-threaded runs
-        archived_logs = "%slogs_%s" % (
-            archived_folder, int(time.time()))
-
-        if len(os.listdir(log_path)) > 0:
+        if not "".join(sys.argv) == "-c":
+            # Only move log files if the test run is not multi-threaded.
+            # (Running tests with "-n NUM" will create threads that only
+            # have "-c" in the sys.argv list. Easy to catch.)
+            archived_logs = "%slogs_%s" % (
+                archived_folder, int(time.time()))
             shutil.move(log_path, archived_logs)
             os.makedirs(log_path)
             if not settings.ARCHIVE_EXISTING_LOGS and not archive_logs:
                 shutil.rmtree(archived_logs)
+            elif len(os.listdir(archived_logs)) == 0:
+                # Don't archive an empty directory
+                shutil.rmtree(archived_logs)
             else:
-                a_join = " ".join(sys.argv)
-                if ("-n" in sys.argv) or ("-n=" in a_join) or (a_join == "-c"):
-                    # Logs are saved/archived now if tests are multithreaded
-                    pass
-                else:
-                    shutil.rmtree(archived_logs)  # (Archive test run later)
+                # Logs are saved/archived
+                pass
+
+
+class LoggerSoft:
+
+    def __init__(self, message,  status=True):
+        self.message = message
+        self.status = status

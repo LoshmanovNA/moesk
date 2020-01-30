@@ -16,7 +16,7 @@ class TestLoginExistingUser(LoginPage):
         """
         self.get(self.app_url)
         self.login_user(self.user_data.user_login_fl,
-                        self.user_data.password)  # Вводим логин и пароль
+                        self.user_data.user_login_fl)  # Вводим логин и пароль
         self.should_be_main_page_lk()  # Проверям главную страницу путем поиска ссылки на профиль
 
 
