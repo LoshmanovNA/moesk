@@ -1,5 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Wed Jan 29 15:06:59 MSK 2020","Wed Jan 29 15:07:16 MSK 2020","17645","tests_ui.tests","test_login_page","TestLoginExistingUser","","","test_login_existing_user","
-        Авторизация под существующим пользователем и
-        и проверка нахождения на главной странице ЛК
-        "
