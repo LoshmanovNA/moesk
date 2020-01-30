@@ -16,3 +16,5 @@ class RegistrationPageLocators:
     REGISTRATION_CONFIRM3_CSS = '#confirm3'
     REGISTRATION_NEXT_STEP_CSS = '#nextStep'
     REGISTRATION_CLOSE_WINDOW_XPATH = '//a[contains(text(), "Закрыть")]'
+    REGISTRATION_FIELD_VALIDATION_CSS = 'span.invalid'
+    REGISTRATION_CHECKBOX_VALIDATION_CSS = 'label.invalid'

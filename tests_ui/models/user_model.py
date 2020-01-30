@@ -1,6 +1,8 @@
 
 
 class UserModel:
+    """Параметры для создания нового пользователя"""
+
     def __init__(self,
                  first_name=None,
                  last_name=None,
@@ -23,3 +25,4 @@ class UserModel:
         self.user_login_ip = user_login_ip
         self.password = password
         self.pass_hash = pass_hash
+

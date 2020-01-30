@@ -1,11 +1,9 @@
 from seleniumbase import BaseCase
 from ..helpers.db_actions import DBManager
-from ..locators import CommonLocators
 from ..models.db_model import DBModel
 from ..models.user_model import UserModel
 from ...config_loader import Config
-
-import logging
+import allure
 
 
 class BasePage(BaseCase):
@@ -15,7 +13,6 @@ class BasePage(BaseCase):
     чтобы иметь доступ к методам общих для всех страниц элементов
     и методам фреймворка BaseCase
     """
-    common_locators = CommonLocators()
 
     def setUp(self):
         """
@@ -25,13 +22,12 @@ class BasePage(BaseCase):
         - создаем класс с пользовательскими тестовыми данными
         """
         super(BasePage, self).setUp()
-        self.logger = logging.getLogger(__name__)
 
         config = Config()
         # For global environment use config['GLOBAL']
         env = config[self.env.upper()]  # Берем значение заданного окружения (TEST, PRODUCTION, etc)
 
-        self.app_url = env['app_url']
+        self.app_url = env['app_url']  # Берем app_url адрес из соответствующего env в config.ini
 
         # Создание соединения с БД
         db_credentials = DBModel(env['db_host'],
@@ -40,7 +36,6 @@ class BasePage(BaseCase):
                                  env['db_schema'],
                                  int(env['db_port']))
         self.connect = DBManager(db_credentials)
-        self.logger.info('Initiate data base connection')
 
         # Данные тестового пользователя
         self.user_data = UserModel(user_login_fl=env['existing_user_fl'],
@@ -48,7 +43,6 @@ class BasePage(BaseCase):
                                    user_login_ip=env['existing_user_ip'],
                                    password=env['password'],
                                    pass_hash=env['pass_hash'])
-        self.logger.info('Created class with user data information')
 
     def tearDown(self):
         """
@@ -56,5 +50,4 @@ class BasePage(BaseCase):
         Закрываем соединение с БД
         """
         self.connect.close_db()
-        self.logger.info('Closed data base connection\n')
         super(BasePage, self).tearDown()

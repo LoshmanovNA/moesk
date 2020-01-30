@@ -1,6 +1,0 @@
-[32mINFO    [0m moesk.tests_ui.pages.base_page:base_page.py:43 Initiate data base connection
-[32mINFO    [0m moesk.tests_ui.pages.base_page:base_page.py:51 Created class with user data information
-[32mINFO    [0m moesk.tests_ui.pages.base_page:login_page.py:14 Start login user with login: , pass: !Q2w3e4r5t
-[32mINFO    [0m moesk.tests_ui.pages.base_page:login_page.py:18 Finish login user
-[32mINFO    [0m moesk.tests_ui.pages.base_page:login_page.py:35 Assertion correct. Got message about wrong username/password
-[32mINFO    [0m moesk.tests_ui.pages.base_page:base_page.py:59 Closed data base connection

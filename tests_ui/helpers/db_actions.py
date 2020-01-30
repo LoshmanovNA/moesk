@@ -3,6 +3,7 @@ import time
 
 
 class DBManager:
+    """Установка соединения с БД и методы для выполнения запросов"""
 
     def __init__(self, DBModel):
         """
@@ -29,7 +30,7 @@ class DBManager:
         if retry_count == 3:
             raise Exception("Unable to connect to Database after 3 retries.")
 
-    def query_fetch_all(self, query, values):
+    def _query_fetch_all(self, query, values):
         """
         Executes a db query, gets all the values, and closes the connection.
         """
@@ -38,7 +39,7 @@ class DBManager:
         # self.__close_db()
         return retval
 
-    def query_fetch_one(self, query, values):
+    def _query_fetch_one(self, query, values):
         """
         Executes a db query, gets the first value, and closes the connection.
         """
@@ -47,7 +48,7 @@ class DBManager:
         # self.__close_db()
         return retval
 
-    def execute_query(self, query, values):
+    def _execute_query(self, query, values):
         """
         Executes a query to the test_db and closes the connection afterwards.
         """
@@ -64,14 +65,20 @@ class DBManager:
         confirmed_time = datetime.today().strftime("%Y-%m-%d %H:%M:%S")  # Дата для сохранения в БД
         sql = f"UPDATE users SET confirmed_at='{confirmed_time}', sms_confirmed_at='{confirmed_time}', " \
               f"encrypted_password=%s, first_password_changed=1 WHERE email=%s"
-        self.execute_query(sql, (pass_hash, email))  # Выполняем запрос
+        self._execute_query(sql, (pass_hash, email))
+
+    def should_be_new_record_into_db(self, value, column, table):
+        """Проверяем наличие новой записи в БД"""
+        sql = f"SELECT * FROM {table} WHERE {column} = %s"
+        response = self._query_fetch_one(sql, value)
+        assert value in response
 
     def delete_new_account_from_db(self, email):
         """Удаляем запись о созданной УЗ из БД и проверяем, что email не найден"""
         sql_1 = "DELETE FROM users WHERE email=%s"
-        self.execute_query(sql_1, email)
+        self._execute_query(sql_1, email)
         sql_2 = "SELECT email FROM users WHERE email=%s"
-        assert not self.query_fetch_one(sql_2, email)
+        assert not self._query_fetch_one(sql_2, email)
 
     # @staticmethod
     # def fake_data_json(path='path', email='email', pass_hash='pass_hash'):

@@ -1,4 +1,4 @@
-from ..pages.login_page import LoginPage, BasePage
+from ..pages.login_page import LoginPage
 from ..pages.registration_page import RegistrationPage
 from ..helpers.user_generator import UserGenerator
 
@@ -19,27 +19,18 @@ class TestLoginExistingUser(LoginPage):
                         self.user_data.password)  # Вводим логин и пароль
         self.should_be_main_page_lk()  # Проверям главную страницу путем поиска ссылки на профиль
 
-    @pytest.mark.negative
-    def test_login_existing_user_without_email(self):
-        """
-        Авторизация под существующим пользователем и
-        и проверка нахождения на главной странице ЛК
-        """
-        self.get(self.app_url)
-        self.login_user(login="",
-                        password=self.user_data.password)  # Вводим логин и пароль
-        self.should_not_login()  # Проверям наличие предупреждения о некорректном логине
-
 
 @pytest.mark.new_user
 class TestLoginNewUser(LoginPage, RegistrationPage):
-    """Тест логина нового пользователя с предварительной регистрацией"""
+    """
+    Тест логина нового пользователя с предварительной
+    регистрацией и удалением записи из БД после теста
+    """
 
     def setUp(self):
         """Генерируем данные для нового пользователя и выполняем регистрацию"""
         super(TestLoginNewUser, self).setUp()
-        self.logger.info("SetUp: Start pre-registration")
-        self.new_user = UserGenerator.fake_user(self.user_data)  # Генерируем класс с тестовыми данными для регистрации
+        self.new_user = UserGenerator().fake_user(self.user_data)  # Генерируем класс с тестовыми данными для регистрации
 
         self.get(self.app_url)
         self.fill_registration_form_fl(first_name=self.new_user.first_name,
@@ -48,12 +39,11 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
                                        phone=self.new_user.phone,
                                        email=self.new_user.email)
         self.should_be_confirm_page()  # Проверяем, что находимся на странице подтверждения успешной регистрации
-        self.logger.info("SetUp: Finish pre-registration")
         self.connect.activate_new_account_db(self.new_user.email,
                                              self.user_data.pass_hash)  # Активируем УЗ заполнением нужных полей в БД
-        self.logger.info("SetUp: New account has activated into DB")
 
     def test_login_new_user(self):
+        """Авторизация под новым пользователем и проверка нахождения на главной странице ЛК"""
         login = self.new_user.email  # Сгенерированный в setUp email
         password = self.user_data.password  # Пароль из конфига
 
@@ -62,6 +52,6 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
         self.should_be_main_page_lk()
 
     def tearDown(self):
+        """Удаляем запись с новой УЗ из БД"""
         self.connect.delete_new_account_from_db(self.new_user.email)
-        self.logger.info('TearDown: Delete new account from DB')
         super(TestLoginNewUser, self).tearDown()

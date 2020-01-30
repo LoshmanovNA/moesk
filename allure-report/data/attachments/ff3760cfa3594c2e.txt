@@ -1,2 +1,0 @@
-[32mINFO    [0m moesk.tests_api.utils.api:api.py:27 TEST: Login with user@user.user, !Q2w3e4r5t credentials
-[31m[1mERROR   [0m moesk.tests_api.utils.api:api.py:28 errors
