@@ -1,8 +1,10 @@
+import allure
 from seleniumbase import BaseCase
 from ..helpers.db_actions import DBManager
 from ..models.db_model import DBModel
 from ..models.user_model import UserModel
 from ...config_loader import Config
+from allure_commons.types import AttachmentType
 
 
 class BasePage(BaseCase):
@@ -29,12 +31,13 @@ class BasePage(BaseCase):
         self.app_url = env['app_url']  # Берем app_url адрес из соответствующего env в config.ini
 
         # Создание соединения с БД
-        db_credentials = DBModel(env['db_host'],
-                                 env['db_username'],
-                                 env['db_password'],
-                                 env['db_schema'],
-                                 int(env['db_port']))
-        self.connect = DBManager(db_credentials)
+        if self.env == 'test':
+            db_credentials = DBModel(env['db_host'],
+                                     env['db_username'],
+                                     env['db_password'],
+                                     env['db_schema'],
+                                     int(env['db_port']))
+            self.connect = DBManager(db_credentials)
 
         # Данные тестового пользователя
         self.user_data = UserModel(user_login_fl=env['existing_user_fl'],
@@ -48,5 +51,23 @@ class BasePage(BaseCase):
         Действия после завершения тестов:
         Закрываем соединение с БД
         """
-        self.connect.close_db()
+        if self.env == 'test':
+            self.connect.close_db()
         super(BasePage, self).tearDown()
+
+    def teardown_method_soft_assert(self):
+        self.assert_true(self.logger_soft.status, self.logger_soft.message)
+
+    def soft_assert(self, status, log_message):
+        """
+        Класс LoggerSoft прописан в seleniumbase/core/log_helper
+        Инициализируется в seleniumbase/fixtures/basecase __init__
+        """
+        if not status:
+            element = self.driver.find_element_by_tag_name('body')
+            screenshot = element.screenshot_as_png
+            allure.attach(screenshot, attachment_type=AttachmentType.PNG)
+            self.logger_soft = self.logger_soft(
+                status=False,
+                message=self.logger_soft.message + "\n" + log_message
+            )

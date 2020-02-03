@@ -41,12 +41,12 @@ class RegistrationPage(BasePage):
         expected_text = 'email_sent'
         assert expected_text in url, f"Message: {url} not contains {expected_text}"
 
-    @allure.step
-    def check_fields_validation(self):
-        """Проверяем наличие ошибки валидации поля"""
-        self.assert_element(self._registration_page_locators.REGISTRATION_FIELD_VALIDATION_CSS)
-
-    @allure.step
-    def check_checkboxes_validation(self):
-        """Проверяем наличие ошибки валидации чек-бокса"""
-        self.assert_element(self._registration_page_locators.REGISTRATION_CHECKBOX_VALIDATION_CSS)
+    # @allure.step
+    # def check_fields_validation(self):
+    #     """Проверяем наличие ошибки валидации поля"""
+    #     self.find_element(self._registration_page_locators.REGISTRATION_FIELD_VALIDATION_CSS)
+    #
+    # @allure.step
+    # def check_checkboxes_validation(self):
+    #     """Проверяем наличие ошибки валидации чек-бокса"""
+    #     self.assert_element(self._registration_page_locators.REGISTRATION_CHECKBOX_VALIDATION_CSS)

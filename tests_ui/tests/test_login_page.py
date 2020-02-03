@@ -21,6 +21,7 @@ class TestLoginExistingUser(LoginPage):
 
 
 @pytest.mark.new_user
+@pytest.mark.test_env
 class TestLoginNewUser(LoginPage, RegistrationPage):
     """
     Тест логина нового пользователя с предварительной

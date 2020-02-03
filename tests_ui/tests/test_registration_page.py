@@ -21,10 +21,12 @@ class TestRegistrationPage(RegistrationPage):
                                        phone=self.user.phone,
                                        email=self.user.email)
         self.should_be_confirm_page()
-        self.connect.should_be_new_record_into_db(self.user.email, 'email', 'users')
+        if self.env == 'test':
+            self.connect.should_be_new_record_into_db(self.user.email, 'email', 'users')
 
     def tearDown(self):
-        self.connect.delete_new_account_from_db(self.user.email)
+        if self.env == 'test':
+            self.connect.delete_new_account_from_db(self.user.email)
         super(TestRegistrationPage, self).tearDown()
 
 
@@ -42,7 +44,10 @@ class TestValidationRegistrationPage(RegistrationPage):
                                        patronymic_name=user.patronymic_name,
                                        phone=user.phone,
                                        email=user.email)
-        self.check_fields_validation()
+        if not self.check_fields_validation():
+            self.soft_assert(status=False, log_message="Не отобразилось сообщение об ошибке при отправке "
+                                                       "формы с невалидным значением в поле")
+
 
     @parameterized.expand([
         (False, True),
@@ -60,3 +65,7 @@ class TestValidationRegistrationPage(RegistrationPage):
                                        check_box_1=param1,
                                        check_box_2=param2)
         self.check_checkboxes_validation()
+
+    def tearDown(self):
+        self.teardown_method_soft_assert()
+        super(TestValidationRegistrationPage, self).tearDown()

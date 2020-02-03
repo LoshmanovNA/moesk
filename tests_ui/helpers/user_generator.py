@@ -56,7 +56,7 @@ class UserGenerator:
         invalid_params_lst = [v for v in self.fake_invalid_data().values()]
 
         for i in range(len(valid_params_lst)):
-            result = [i for i in valid_params_lst]
+            result = [item for item in valid_params_lst]
             for j in invalid_params_lst[i]:
                 result.pop(i)
                 result.insert(i, j)

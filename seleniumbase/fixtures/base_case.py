@@ -48,6 +48,7 @@ from seleniumbase.core.testcase_manager import TestcaseDataPayload
 from seleniumbase.core.testcase_manager import TestcaseManager
 from seleniumbase.core import download_helper
 from seleniumbase.core import log_helper
+from seleniumbase.core.log_helper import LoggerSoft
 from seleniumbase.core import settings_parser
 from seleniumbase.core import tour_helper
 from seleniumbase.core import visual_helper
@@ -76,6 +77,7 @@ class BaseCase(unittest.TestCase):
         self.driver = None
         self.environment = None
         self.env = None  # Add a shortened version of self.environment
+        self.logger_soft = LoggerSoft(message="")
         self.__last_url_of_delayed_assert = "data:,"
         self.__last_page_load_url = "data:,"
         self.__last_page_screenshot = None
