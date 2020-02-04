@@ -10,27 +10,34 @@ class RegistrationPage(BasePage):
     _registration_page_locators = RegistrationPageLocators()
 
     @allure.step
-    def fill_registration_form_fl(self, first_name='name', last_name='surname',
-                                  patronymic_name='patronymic', email='email', phone='phone',
-                                  check_box_1=True, check_box_2=True):
-        """Проверка регистрации заявителя вида ФЛ (Физ. лицо)"""
+    def click_registration_button(self):
         # Переходим по ссылке для регистрации
         self.click(self._login_page_locators.LOGIN_REGISTER_LINK_CSS)
+
+    @allure.step
+    def fill_registration_form_fl(self, user_model):
+        """Заполнение формы регистрации заявителя вида ФЛ (Физ. лицо)"""
         # Открываем выпадающий список Тип пользователя
         self.click(self._registration_page_locators.REGISTRATION_USER_TYPE_LIST_CSS)
         # Выбираем тип пользователя ФЛ
         self.click(self._registration_page_locators.REGISTRATION_USER_TYPE_FL_XPATH, 'By.XPATH')
         # Вводим данные пользователя
-        self.update_text(self._registration_page_locators.REGISTRATION_NAME_CSS, first_name)
-        self.update_text(self._registration_page_locators.REGISTRATION_SURNAME_CSS, last_name)
-        self.update_text(self._registration_page_locators.REGISTRATION_PATRONYMIC_CSS, patronymic_name)
-        self.update_text(self._registration_page_locators.REGISTRATION_EMAIL_CSS, email)
-        self.update_text(self._registration_page_locators.REGISTRATION_PHONE_CSS, phone)
+        self.update_text(self._registration_page_locators.REGISTRATION_NAME_CSS, user_model.first_name)
+        self.update_text(self._registration_page_locators.REGISTRATION_SURNAME_CSS, user_model.last_name)
+        self.update_text(self._registration_page_locators.REGISTRATION_PATRONYMIC_CSS, user_model.patronymic_name)
+        self.update_text(self._registration_page_locators.REGISTRATION_EMAIL_CSS, user_model.email)
+        self.update_text(self._registration_page_locators.REGISTRATION_PHONE_CSS, user_model.phone)
+
+    @allure.step
+    def actions_with_required_checkboxes(self, check_box_1=True, check_box_2=True):
         # Ставим чек-боксы
         if check_box_1:
             self.js_click(self._registration_page_locators.REGISTRATION_CONFIRM1_CSS)
         if check_box_2:
             self.js_click(self._registration_page_locators.REGISTRATION_CONFIRM2_CSS)
+
+    @allure.step
+    def continue_registration(self):
         # Кликаем кнопку продолжения регистрации
         self.click(self._registration_page_locators.REGISTRATION_NEXT_STEP_CSS)
 

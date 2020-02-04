@@ -23,12 +23,12 @@ class RegistrationPageLocators:
     REGISTRATION_CLOSE_WINDOW_XPATH = '//a[contains(text(), "Закрыть")]'
 
     #  Ошибки валидации полей формы регистрации
-    REGISTRATION_INVALID_LAST_NAME_XPATH = '//input[@id="user_last_name"]/ancestor::span[contains (@class, "invalid")]'
-    REGISTRATION_INVALID_FIRST_NAME_XPATH = '//input[@id="user_first_name"]/ancestor::span[contains (@class, "invalid")]'
-    REGISTRATION_INVALID_PATRONYMIC_NAME_XPATH = '//input[@id="user_patronymic_name"]/ancestor::span[contains (@class, "invalid")]'
-    REGISTRATION_INVALID_EMAIL_XPATH = '//input[@id="user_email"]/ancestor::span[contains (@class, "invalid")]'
-    REGISTRATION_INVALID_PHONE_XPATH = '//input[@id="phone_input"]/ancestor::span[contains (@class, "invalid")]'
+    REGISTRATION_INVALID_LAST_NAME_XPATH = '//input[@id="user_last_name"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div'
+    REGISTRATION_INVALID_FIRST_NAME_XPATH = '//input[@id="user_first_name"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div'
+    REGISTRATION_INVALID_PATRONYMIC_NAME_XPATH = '//input[@id="user_patronymic_name"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div'
+    REGISTRATION_INVALID_EMAIL_XPATH = '//input[@id="user_email"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div'
+    REGISTRATION_INVALID_PHONE_XPATH = '//input[@id="phone_input"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div'
 
     #  Ошибки валидации чек-боксов
-    REGISTRATION_INVALID_CHECKBOX1_XPATH = '//input[@id="confirm1"]/ancestor::label[contains (@class, "invalid")]'
-    REGISTRATION_INVALID_CHECKBOX2_XPATH = '//input[@id="confirm2"]/ancestor::label[contains (@class, "invalid")]'
+    REGISTRATION_INVALID_CHECKBOX1_XPATH = '//input[@id="confirm1"]/ancestor::label[contains (@class, "invalid")]/following-sibling::span'
+    REGISTRATION_INVALID_CHECKBOX2_XPATH = '//input[@id="confirm2"]/ancestor::label[contains (@class, "invalid")]/following-sibling::span'

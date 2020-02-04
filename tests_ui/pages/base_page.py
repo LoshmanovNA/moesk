@@ -45,18 +45,8 @@ class BasePage(BaseCase):
                                    user_login_ip=env['existing_user_ip'],
                                    password=env['password'],
                                    pass_hash=env['pass_hash'])
-
-    def tearDown(self):
-        """
-        Действия после завершения тестов:
-        Закрываем соединение с БД
-        """
-        if self.env == 'test':
-            self.connect.close_db()
-        super(BasePage, self).tearDown()
-
-    def teardown_method_soft_assert(self):
-        self.assert_true(self.logger_soft.status, self.logger_soft.message)
+        #  Открываем стартовую страницу
+        self.get(self.app_url)
 
     def soft_assert(self, status, log_message):
         """
@@ -71,3 +61,15 @@ class BasePage(BaseCase):
                 status=False,
                 message=self.logger_soft.message + "\n" + log_message
             )
+
+    def tearDown(self):
+        """
+        Действия после завершения тестов:
+        Закрываем соединение с БД
+        """
+        if self.env == 'test':
+            self.connect.close_db()
+        super(BasePage, self).tearDown()
+
+    def teardown_method(self, method):
+        self.assert_true(self.logger_soft.status, self.logger_soft.message)
