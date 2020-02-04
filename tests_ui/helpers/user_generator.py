@@ -1,5 +1,6 @@
 from faker import Faker
-from ..models.user_model import UserModel
+# from ..models.user_model import UserModel
+
 
 
 class UserGenerator:
@@ -14,11 +15,11 @@ class UserGenerator:
 
     def fake_user(self, user_model):
         valid_data = self.fake_valid_data()
-        user_model.first_name = valid_data['valid_first_name']
-        user_model.last_name = valid_data['valid_last_name']
-        user_model.patronymic_name = valid_data['valid_patronymic_name']
-        user_model.phone = valid_data['valid_phone']
-        user_model.email = valid_data['valid_email']
+        user_model.first_name = valid_data['first_name']
+        user_model.last_name = valid_data['last_name']
+        user_model.patronymic_name = valid_data['patronymic_name']
+        user_model.phone = valid_data['phone']
+        user_model.email = valid_data['email']
         return user_model
 
     def fake_valid_data(self):
@@ -51,9 +52,40 @@ class UserGenerator:
 
                 'email': ['plainaddress', 'email.example.com', 'email@example', '']}
 
-    def generate_invalid_user_model(self, user_model):
-        valid_data = self.fake_valid_data()
-        result = valid_data.copy()
-        for parameters in self.fake_invalid_data():
-            for values in parameters:
+    # def generate_invalid_user_model(self, user_model):
+    #     valid_data = self.fake_valid_data()
+    #     result = valid_data.copy()
+    #     for parameters in self.fake_invalid_data():
+    #         for values in parameters:
+
+from tests_ui.models.user_model import UserModel
+
+invalid_user = {'first_name': 'имя',
+                'phone': '123456',
+                'email': 'email@email'}
+
+
+# def generator():
+#     # Словарь, который будем возвращать
+#     user_data = {}
+#     # Генерируем словарь с валидными параметрами
+#     valid_data = UserGenerator().fake_valid_data()
+#
+#     # Перебираем ключи в словаре с невалидными параметрами
+#     for key in invalid_user.keys():
+#         # Копируем словарь с валидными данными чтобы в каждой итерации были одинаковые
+#         # валидные параметры
+#         data = valid_data.copy()
+#         # Присваиваем ключу валидного словаря значение ключа невалидного словаря
+#         data[key] = invalid_user.get(key)
+#
+#         result = [] # Создаем пустой список в который положим values из data
+#         for value in data.values():
+#             result.append(value)
+#
+#         # В пустой словарь добавляем ключ, значение
+#         # которого изменили на невалидное и список values с одним невалидным параметром
+#         user_data.update({key: result})
+#     return user_data
+
 
