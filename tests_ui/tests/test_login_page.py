@@ -31,7 +31,7 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
     def setUp(self):
         """Генерируем данные для нового пользователя и выполняем регистрацию"""
         super(TestLoginNewUser, self).setUp()
-        self.new_user = UserGenerator().fake_user(self.user_data)  # Генерируем класс с тестовыми данными для регистрации
+        self.new_user = UserGenerator().valid_user(self.user_data)  # Генерируем класс с тестовыми данными для регистрации
 
         self.get(self.app_url)
         self.fill_registration_form_fl(first_name=self.new_user.first_name,
