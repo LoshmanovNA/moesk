@@ -2,8 +2,13 @@
 
 class DBModel:
     """Параметры для настройки подключения к БД"""
-    def __init__(self, db_server, db_user,
-                 db_pass, db_schema, db_port):
+    def __init__(self,
+                 db_server,
+                 db_user,
+                 db_pass,
+                 db_schema,
+                 db_port):
+
         self.db_server = db_server
         self.db_user = db_user
         self.db_pass = db_pass
