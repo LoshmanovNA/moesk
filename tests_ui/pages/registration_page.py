@@ -1,3 +1,4 @@
+from ..models.validation_errors import RegistrationFormErrorsModel
 from ..locators import LoginPageLocators, RegistrationPageLocators
 from ..pages.base_page import BasePage
 
@@ -49,13 +50,33 @@ class RegistrationPage(BasePage):
         assert expected_text in url, f"Message: {url} not contains {expected_text}"
 
     @allure.step
-    def check_fields_validation(self):
+    def get_actual_validation_errors(self, field):
         """Проверяем наличие ошибки валидации поля"""
-        error_messages = self._registration_page_locators.REGISTRATION_VALIDATION_ERROR_MESSAGES_XPATH.items()
+        actual_validation_error = RegistrationFormErrorsModel()
+        registration_form = self._registration_page_locators.REGISTRATION_VALIDATION_ERROR_MESSAGES_XPATH
+        error_message = self.find_element(registration_form[field])
+        if error_message:
+            actual_validation_error.__dict__[field] = self.get_text(error_message)
 
-        for field, element in error_messages:
-            if self.find_element(element):
+        return actual_validation_error
 
+    @allure.step
+    def get_expected_validation_errors(self):
+        """Доделать"""
+        expected_validation_errors = RegistrationFormErrorsModel().expected_validation_errors()
+        reg_form_elements = self._registration_page_locators.REGISTRATION_VALIDATION_ERROR_MESSAGES_XPATH.items()
+
+        for field, element in reg_form_elements:
+            if not self.find_element(element):
+                expected_validation_errors.__dict__[field] = None
+        return expected_validation_errors
+
+    @allure.step
+    def check_fields_validation(self, expected_errors, actual_errors):
+        for field in expected_errors.__dict__.keys():
+            if expected_errors.__dict__[field] != actual_errors.__dict__[field]:
+                print(f"{expected_errors.__dict__[field]} !== {actual_errors.__dict__[field]}")
+                return False
 
     # @allure.step
     # def check_checkboxes_validation(self):

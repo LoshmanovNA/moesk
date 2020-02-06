@@ -26,12 +26,15 @@ class UserGenerator:
         valid_data = self.fake_valid_data()
         invalid_data = self.fake_invalid_data()
 
-        for key in valid_data.keys():
-            return_data = valid_data.copy()
-            if key in invalid_data.keys():
-                for value in invalid_data[key]:
-                    return_data[key] = value
-                    yield tuple(return_data.values())
+        for key in valid_data.keys():  # Проходим по каждому ключу в словаре valid_data. Названия ключей - это названия полей формы регистрации
+            user_data = valid_data.copy()  # Создаем чистую копию валидных данных
+            if key in invalid_data.keys():  # Если поле из валидных данных присутствует в невалидных данных, то
+                user_data['negative_param'] = key  # создаем ключ, в значении которого будет названиее невалидного поля.
+                # Название ключа соответствуе атрибуту класса user model
+                for value in invalid_data[key]:  # Берем невалидный вариант определенного поля
+                    user_data[key] = value   # И перезаписываем валидное значение. Получается словарь с одним невалидным полем среди остальных валидных
+                    yield [UserModel(**user_data)]  # распаковываем словарь в модель пользователя, названия ключей соответствуют атрибутам класса,
+                    # затем выплевываем модель в декоратор параметризации и переходим к следующему невалидному значению поля, а затем к следующему полю
 
     def fake_valid_data(self):
         """Список с валидными значениями для формы регистрации"""

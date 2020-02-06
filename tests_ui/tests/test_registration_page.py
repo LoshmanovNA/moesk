@@ -34,15 +34,15 @@ class TestValidationRegistrationPage(RegistrationPage):
 
     @parameterized.expand(_generator.invalid_user())
     @pytest.mark.negative
-    def test_registration_form_fields_validation(self, *args):
-        user = UserModel(*args)
+    def test_registration_form_fields_validation(self, user):
+        checked_field = user.negative_param
         self.click_registration_button()
         self.fill_registration_form_fl(user)
         self.actions_with_required_checkboxes()
         self.continue_registration()
-        # if not self.check_fields_validation():
-        #     self.soft_assert(status=False, log_message="Не отобразилось сообщение об ошибке при отправке "
-        #                                                "формы с невалидным значением в поле")
+        if not self.check_fields_validation(self.get_expected_validation_errors(),
+                                            self.get_actual_validation_errors()):
+            self.soft_assert(status=False, log_message=f"Сообщение об ошибке валидации в поле {checked_field} некорректно")
 
 
     # @parameterized.expand([
