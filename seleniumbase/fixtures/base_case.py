@@ -33,6 +33,9 @@ import time
 import urllib3
 import unittest
 import uuid
+import allure
+
+from allure_commons.types import AttachmentType
 from selenium.common.exceptions import (StaleElementReferenceException,
                                         MoveTargetOutOfBoundsException,
                                         WebDriverException)
@@ -93,6 +96,20 @@ class BaseCase(unittest.TestCase):
         self._default_driver = None
         self._drivers_list = []
         self._tour_steps = {}
+
+    def soft_assert(self, status, log_message):
+        """
+        Добавленный метод
+        Класс LoggerSoft прописан в seleniumbase/core/log_helper
+        Инициализируется в BaseCase __init__
+        """
+        if not status:
+            element = self.driver.find_element_by_tag_name('body')
+            screenshot = element.screenshot_as_png
+            allure.attach(screenshot, attachment_type=AttachmentType.PNG)
+            self.logger_soft = LoggerSoft(
+                status=False,
+                message=self.logger_soft.message + "\n" + log_message)
 
     def open(self, url):
         """ Navigates the current browser window to the specified page. """

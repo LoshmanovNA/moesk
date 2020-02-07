@@ -50,33 +50,31 @@ class RegistrationPage(BasePage):
         assert expected_text in url, f"Message: {url} not contains {expected_text}"
 
     @allure.step
-    def get_actual_validation_errors(self, field):
+    def get_actual_validation_errors(self, error_model):
         """Проверяем наличие ошибки валидации поля"""
-        actual_validation_error = RegistrationFormErrorsModel()
-        registration_form = self._registration_page_locators.REGISTRATION_VALIDATION_ERROR_MESSAGES_XPATH
-        error_message = self.find_element(registration_form[field])
-        if error_message:
-            actual_validation_error.__dict__[field] = self.get_text(error_message)
+        registration_form_elements = self._registration_page_locators.REGISTRATION_VALIDATION_ERROR_MESSAGES_XPATH.items()
+        actual_error_model = error_model()
+        for field_name, element_with_error_message in registration_form_elements:
+            if self.is_element_present(element_with_error_message, 'By.XPATH'):
+                actual_error_model.__dict__[field_name] = self.get_text(element_with_error_message, 'By.XPATH')
 
-        return actual_validation_error
-
-    @allure.step
-    def get_expected_validation_errors(self):
-        """Доделать"""
-        expected_validation_errors = RegistrationFormErrorsModel().expected_validation_errors()
-        reg_form_elements = self._registration_page_locators.REGISTRATION_VALIDATION_ERROR_MESSAGES_XPATH.items()
-
-        for field, element in reg_form_elements:
-            if not self.find_element(element):
-                expected_validation_errors.__dict__[field] = None
-        return expected_validation_errors
+        return actual_error_model
 
     @allure.step
-    def check_fields_validation(self, expected_errors, actual_errors):
+    def get_expected_validation_errors(self, test_field, error_model):
+        expected_error_model = error_model()
+        expected_validation_errors_dict = RegistrationFormErrorsModel.expected_validation_errors()
+        expected_error_message = expected_validation_errors_dict[test_field]
+        expected_error_model.__dict__[test_field] = expected_error_message
+        return expected_error_model
+
+    @allure.step
+    def compare_actual_and_expected_validation_errors(self, actual_errors, expected_errors):
         for field in expected_errors.__dict__.keys():
-            if expected_errors.__dict__[field] != actual_errors.__dict__[field]:
-                print(f"{expected_errors.__dict__[field]} !== {actual_errors.__dict__[field]}")
+            if expected_errors.__dict__.get(field) != actual_errors.__dict__.get(field):
+                print(f"ОЖИДАЛОСЬ: {expected_errors.__dict__.get(field)}, ПОЛУЧЕНО: {actual_errors.__dict__.get(field)}")
                 return False
+        return True
 
     # @allure.step
     # def check_checkboxes_validation(self):

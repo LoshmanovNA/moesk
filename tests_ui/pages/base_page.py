@@ -1,10 +1,8 @@
-import allure
 from seleniumbase import BaseCase
 from ..helpers.db_actions import DBManager
 from ..models.db_model import DBModel
 from ..models.user_model import UserModel
 from ...config_loader import Config
-from allure_commons.types import AttachmentType
 
 
 class BasePage(BaseCase):
@@ -47,20 +45,6 @@ class BasePage(BaseCase):
                                    pass_hash=env['pass_hash'])
         #  Открываем стартовую страницу
         self.get(self.app_url)
-
-    def soft_assert(self, status, log_message):
-        """
-        Класс LoggerSoft прописан в seleniumbase/core/log_helper
-        Инициализируется в seleniumbase/fixtures/basecase __init__
-        """
-        if not status:
-            element = self.driver.find_element_by_tag_name('body')
-            screenshot = element.screenshot_as_png
-            allure.attach(screenshot, attachment_type=AttachmentType.PNG)
-            self.logger_soft = self.logger_soft(
-                status=False,
-                message=self.logger_soft.message + "\n" + log_message
-            )
 
     def tearDown(self):
         """

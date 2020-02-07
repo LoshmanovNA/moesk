@@ -16,11 +16,14 @@ class RegistrationFormErrorsModel:
         self.confirm_1 = confirm_1
         self.confirm_2 = confirm_2
 
-    def expected_validation_errors(self):
-        self.first_name = 'Обязательное поле'
-        self.last_name = 'Обязательное поле'
-        self.patronymic_name = 'Обязательное поле'
-        self.email = 'Некорректный электронный адрес'
-        self.phone = 'Обязательное поле, формат +7 (9xx) xxxxxxx'
-        self.confirm_1 = 'Обязательное поле'
-        self.confirm_2 = 'Обязательное поле'
+    @staticmethod
+    def expected_validation_errors():
+        return {
+            'first_name': 'С заглавной буквы, только кириллица',
+            'last_name': 'С заглавной буквы, только кириллица',
+            'patronymic_name': 'С заглавной буквы, только кириллица',
+            'email': 'Некорректный электронный адрес',
+            'phone': 'Обязательное поле, формат +7 (9xx) xxxxxxx',
+            'confirm_1': 'Обязательное полее',
+            'confirm_2': 'Обязательное поле'
+        }

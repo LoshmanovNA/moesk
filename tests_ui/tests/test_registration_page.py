@@ -1,31 +1,32 @@
 from ..pages.registration_page import RegistrationPage
 from ..helpers.user_generator import UserGenerator
 from ..models.user_model import UserModel
+from ..models.validation_errors import RegistrationFormErrorsModel
 from parameterized import parameterized
 import pytest
 
 
-class TestRegistrationPage(RegistrationPage):
-    """Тест создания новой учетной записи"""
-
-    def test_registration_form(self):
-        """
-        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу
-        подтверждения регистрации, проверяем наличие новой записи в БД, удаляем новую УЗ из БД
-        """
-        self.user = UserGenerator().valid_user()(self.user_data)
-        self.click_registration_button()
-        self.fill_registration_form_fl(self.user)
-        self.actions_with_required_checkboxes()
-        self.continue_registration()
-        self.should_be_confirm_page()
-        if self.env == 'test':
-            self.connect.should_be_new_record_into_db(self.user.email, 'email', 'users')
-
-    def tearDown(self):
-        if self.env == 'test':
-            self.connect.delete_new_account_from_db(self.user.email)
-        super(TestRegistrationPage, self).tearDown()
+# class TestRegistrationPage(RegistrationPage):
+#     """Тест создания новой учетной записи"""
+#
+#     def test_registration_form(self):
+#         """
+#         Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу
+#         подтверждения регистрации, проверяем наличие новой записи в БД, удаляем новую УЗ из БД
+#         """
+#         self.user = UserGenerator().valid_user()(self.user_data)
+#         self.click_registration_button()
+#         self.fill_registration_form_fl(self.user)
+#         self.actions_with_required_checkboxes()
+#         self.continue_registration()
+#         self.should_be_confirm_page()
+#         if self.env == 'test':
+#             self.connect.should_be_new_record_into_db(self.user.email, 'email', 'users')
+#
+#     def tearDown(self):
+#         if self.env == 'test':
+#             self.connect.delete_new_account_from_db(self.user.email)
+#         super(TestRegistrationPage, self).tearDown()
 
 
 class TestValidationRegistrationPage(RegistrationPage):
@@ -35,15 +36,17 @@ class TestValidationRegistrationPage(RegistrationPage):
     @parameterized.expand(_generator.invalid_user())
     @pytest.mark.negative
     def test_registration_form_fields_validation(self, user):
-        checked_field = user.negative_param
+        test_field = user.negative_param
+        error_model = RegistrationFormErrorsModel
+
         self.click_registration_button()
         self.fill_registration_form_fl(user)
         self.actions_with_required_checkboxes()
         self.continue_registration()
-        if not self.check_fields_validation(self.get_expected_validation_errors(),
-                                            self.get_actual_validation_errors()):
-            self.soft_assert(status=False, log_message=f"Сообщение об ошибке валидации в поле {checked_field} некорректно")
-
+        if not self.compare_actual_and_expected_validation_errors(
+                self.get_actual_validation_errors(error_model),
+                self.get_expected_validation_errors(test_field, error_model)):
+            self.soft_assert(status=False, log_message=f"Сообщение об ошибке валидации в поле {test_field} некорректно")
 
     # @parameterized.expand([
     #     (False, True),
