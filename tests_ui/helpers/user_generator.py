@@ -34,15 +34,21 @@ class UserGenerator:
             user_data = valid_data.copy()  # Создаем чистую копию валидных данных
             if field in valid_data.keys():  # Если поле из невалидных данных присутствует в валидных данных, то
                 user_data['invalid_field'] = field  # создаем ключ, в значении которого будет названиее невалидного поля. Название ключа соответствуе атрибуту класса user model
-                if not isinstance(invalid_data[field], dict):  # Провряем есть ли у ключа типы ошибок
-                    for invalid_value in invalid_data[field]:  # Если нет то перебираем значения ключа, т.к это может быть список
-                        user_data[field] = invalid_value  # И перезаписываем валидное значение невалидным. Получается словарь с одним невалидным полем среди остальных валидных
-                        yield [UserModel(**user_data)]  # распаковываем словарь в модель пользователя, названия ключей соответствуют атрибутам класса
+
+                if not isinstance(invalid_data[field], dict):  # Проверяем есть ли у ключа в значении словарь с типами ошибок
+                    if not isinstance(invalid_data[field], str) and isinstance(invalid_data[field], Iterable):  # Если в значении итерируемый объект, но не строка
+                        for invalid_value in invalid_data[field]:  # Перебираем значения итерируемого объекта
+                            user_data[field] = invalid_value  # И перезаписываем валидное значение невалидным. Получается словарь с одним невалидным полем среди остальных валидных
+                            yield [UserModel(**user_data)]  # распаковываем словарь в модель пользователя, названия ключей соответствуют атрибутам класса
+                    else:
+                        user_data[field] = invalid_data[field]  # Если в значении строка
+                        yield [UserModel(**user_data)]
                 else:
-                    for validation_type, invalid_value in invalid_data[field].items():  # Если ключ содержит словарь с типами валидации
-                        user_data['validation_type'] = validation_type  # То создаем новый ключ с типом валидации который потом передадим в модель
+                    for validation_type, invalid_value in invalid_data[field].items():  # Если ключ содержит в значении словарь с типами валидации
+                        user_data['validation_type'] = validation_type  # То создаем в словаре с данными для модели пользователя новый ключ с типом валидации который потом передадим в модель
                         # self.logger.info(invalid_data[field].items())
                         if not isinstance(invalid_value, str) and isinstance(invalid_value, Iterable):
+
                             for value in invalid_value:  # Перебираем значения в value каждого типа валидации
                                 user_data[field] = value  # и замеянем ими валидное значение проверяемого поля
                                 # self.logger.info(user_data.items())
