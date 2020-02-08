@@ -14,7 +14,8 @@ class UserModel:
                  user_login_ip=None,
                  password=None,
                  pass_hash=None,
-                 negative_param=None):
+                 invalid_field=None,
+                 validation_type=None):
 
         self.first_name = first_name
         self.last_name = last_name
@@ -26,5 +27,6 @@ class UserModel:
         self.user_login_ip = user_login_ip
         self.password = password
         self.pass_hash = pass_hash
-        self.negative_param = negative_param
+        self.invalid_field = invalid_field
+        self.validation_type = validation_type
 

@@ -1,3 +1,5 @@
+import logging
+
 from seleniumbase import BaseCase
 from ..helpers.db_actions import DBManager
 from ..models.db_model import DBModel
@@ -25,8 +27,8 @@ class BasePage(BaseCase):
         config = Config()
         # For global environment use config['GLOBAL']
         env = config[self.env.upper()]  # Берем значение заданного окружения (TEST, PRODUCTION, etc)
-
         self.app_url = env['app_url']  # Берем app_url адрес из соответствующего env в config.ini
+        self.logger = logging.getLogger(__name__)
 
         # Создание соединения с БД
         if self.env == 'test':

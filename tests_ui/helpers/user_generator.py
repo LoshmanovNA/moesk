@@ -1,3 +1,6 @@
+import logging
+
+from collections.abc import Iterable
 from faker import Faker
 from ..models.user_model import UserModel
 
@@ -11,6 +14,7 @@ class UserGenerator:
         self.faker = Faker(['ru_RU', 'en_US'])
         self.fake_ru = self.faker['ru_RU']
         self.fake_en = self.faker['en_US']
+        self.logger = logging.getLogger(__name__)
 
     def valid_user(self, user_model):
         valid_data = self.fake_valid_data()
@@ -26,15 +30,27 @@ class UserGenerator:
         valid_data = self.fake_valid_data()
         invalid_data = self.fake_invalid_data()
 
-        for key in valid_data.keys():  # Проходим по каждому ключу в словаре valid_data. Названия ключей - это названия полей формы регистрации
+        for field in invalid_data.keys():  # Проходим по каждому ключу в словаре invalid_data. Названия ключей - это названия полей формы регистрации
             user_data = valid_data.copy()  # Создаем чистую копию валидных данных
-            if key in invalid_data.keys():  # Если поле из валидных данных присутствует в невалидных данных, то
-                user_data['negative_param'] = key  # создаем ключ, в значении которого будет названиее невалидного поля.
-                # Название ключа соответствуе атрибуту класса user model
-                for value in invalid_data[key]:  # Берем невалидный вариант определенного поля
-                    user_data[key] = value   # И перезаписываем валидное значение. Получается словарь с одним невалидным полем среди остальных валидных
-                    yield [UserModel(**user_data)]  # распаковываем словарь в модель пользователя, названия ключей соответствуют атрибутам класса,
-                    # затем выплевываем модель в декоратор параметризации и переходим к следующему невалидному значению поля, а затем к следующему полю
+            if field in valid_data.keys():  # Если поле из невалидных данных присутствует в валидных данных, то
+                user_data['invalid_field'] = field  # создаем ключ, в значении которого будет названиее невалидного поля. Название ключа соответствуе атрибуту класса user model
+                if not isinstance(invalid_data[field], dict):  # Провряем есть ли у ключа типы ошибок
+                    for invalid_value in invalid_data[field]:  # Если нет то перебираем значения ключа, т.к это может быть список
+                        user_data[field] = invalid_value  # И перезаписываем валидное значение невалидным. Получается словарь с одним невалидным полем среди остальных валидных
+                        yield [UserModel(**user_data)]  # распаковываем словарь в модель пользователя, названия ключей соответствуют атрибутам класса
+                else:
+                    for validation_type, invalid_value in invalid_data[field].items():  # Если ключ содержит словарь с типами валидации
+                        user_data['validation_type'] = validation_type  # То создаем новый ключ с типом валидации который потом передадим в модель
+                        # self.logger.info(invalid_data[field].items())
+                        if not isinstance(invalid_value, str) and isinstance(invalid_value, Iterable):
+                            for value in invalid_value:  # Перебираем значения в value каждого типа валидации
+                                user_data[field] = value  # и замеянем ими валидное значение проверяемого поля
+                                # self.logger.info(user_data.items())
+                                yield [UserModel(**user_data)]
+                        else:
+                            user_data[field] = invalid_value
+                            # self.logger.info(user_data.items())
+                            yield [UserModel(**user_data)]
 
     def fake_valid_data(self):
         """Список с валидными значениями для формы регистрации"""
@@ -47,20 +63,23 @@ class UserGenerator:
         }
 
     def fake_invalid_data(self):
-        return {'first_name': [self.fake_ru.first_name_male().lower(),
-                               self.fake_ru.first_name_male().upper(),
-                               self.fake_en.first_name_male(),
-                               ''],
+        return {'first_name': {'invalid': [self.fake_ru.first_name_male().lower(),
+                                           self.fake_ru.first_name_male().upper(),
+                                           self.fake_en.first_name_male()],
+                               'empty': ''
+                               },
 
-                'last_name': [self.fake_ru.last_name_male().lower(),
-                              self.fake_ru.last_name_male().upper(),
-                              self.fake_en.last_name_male(),
-                              ''],
+                'last_name': {'invalid': [self.fake_ru.last_name_male().lower(),
+                                          self.fake_ru.last_name_male().upper(),
+                                          self.fake_en.last_name_male()],
+                              'empty': ''
+                              },
 
-                'patronymic_name': [self.fake_ru.middle_name_male().lower(),
-                                    self.fake_ru.middle_name_male().upper(),
-                                    self.fake_en.name_male(),
-                                    ''],
+                'patronymic_name': {'invalid': [self.fake_ru.middle_name_male().lower(),
+                                                self.fake_ru.middle_name_male().upper(),
+                                                self.fake_en.name_male()],
+                                    'empty': ''
+                                    },
 
                 'phone': ['1234567890', '47224567890', '!#$!%!@', ''],
 

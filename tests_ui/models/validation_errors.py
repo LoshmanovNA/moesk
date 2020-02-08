@@ -19,9 +19,18 @@ class RegistrationFormErrorsModel:
     @staticmethod
     def expected_validation_errors():
         return {
-            'first_name': 'С заглавной буквы, только кириллица',
-            'last_name': 'С заглавной буквы, только кириллица',
-            'patronymic_name': 'С заглавной буквы, только кириллица',
+            'first_name': {
+                'invalid': 'С заглавной буквы, только кириллица',
+                'empty': 'Обязательное поле',
+            },
+            'last_name': {
+                'invalid': 'С заглавной буквы, только кириллица',
+                'empty': 'Обязательное поле'
+            },
+            'patronymic_name': {
+                'invalid': 'С заглавной буквы, только кириллица',
+                'empty': 'Обязательное поле'
+            },
             'email': 'Некорректный электронный адрес',
             'phone': 'Обязательное поле, формат +7 (9xx) xxxxxxx',
             'confirm_1': 'Обязательное полее',

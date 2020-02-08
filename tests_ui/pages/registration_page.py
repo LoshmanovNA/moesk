@@ -61,19 +61,25 @@ class RegistrationPage(BasePage):
         return actual_error_model
 
     @allure.step
-    def get_expected_validation_errors(self, test_field, error_model):
+    def get_expected_validation_errors(self, field, validation_type, error_model):
         expected_error_model = error_model()
-        expected_validation_errors_dict = RegistrationFormErrorsModel.expected_validation_errors()
-        expected_error_message = expected_validation_errors_dict[test_field]
-        expected_error_model.__dict__[test_field] = expected_error_message
+        all_expected_validation_errors_dict = RegistrationFormErrorsModel.expected_validation_errors()
+        print(field, validation_type)
+        if validation_type:
+            expected_error_message = all_expected_validation_errors_dict[field][validation_type]
+            expected_error_model.__dict__[field] = expected_error_message
+        else:
+            expected_error_message = all_expected_validation_errors_dict[field]
+            expected_error_model.__dict__[field] = expected_error_message
         return expected_error_model
 
     @allure.step
     def compare_actual_and_expected_validation_errors(self, actual_errors, expected_errors):
         for field in expected_errors.__dict__.keys():
-            if expected_errors.__dict__.get(field) != actual_errors.__dict__.get(field):
-                print(f"ОЖИДАЛОСЬ: {expected_errors.__dict__.get(field)}, ПОЛУЧЕНО: {actual_errors.__dict__.get(field)}")
+            if expected_errors.__dict__[field] != actual_errors.__dict__[field]:
+                print(f"ОЖИДАЛОСЬ: {expected_errors.__dict__[field]}, ПОЛУЧЕНО: {actual_errors.__dict__[field]}")
                 return False
+
         return True
 
     # @allure.step
