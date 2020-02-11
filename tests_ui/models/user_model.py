@@ -15,7 +15,9 @@ class UserModel:
                  password=None,
                  pass_hash=None,
                  invalid_field=None,
-                 validation_type=None):
+                 validation_type=None,
+                 confirm_1=None,
+                 confirm_2=None):
 
         self.first_name = first_name
         self.last_name = last_name
@@ -29,4 +31,6 @@ class UserModel:
         self.pass_hash = pass_hash
         self.invalid_field = invalid_field
         self.validation_type = validation_type
+        self.confirm_1 = confirm_1
+        self.confirm_2 = confirm_2
 

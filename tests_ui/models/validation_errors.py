@@ -33,6 +33,6 @@ class RegistrationFormErrorsModel:
             },
             'email': 'Некорректный электронный адрес',
             'phone': 'Обязательное поле, формат +7 (9xx) xxxxxxx',
-            'confirm_1': 'Обязательное полее',
+            'confirm_1': 'Обязательное поле',
             'confirm_2': 'Обязательное поле'
         }

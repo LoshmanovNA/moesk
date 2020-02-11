@@ -57,32 +57,26 @@ class RegistrationPage(BasePage):
         for field_name, element_with_error_message in registration_form_elements:
             if self.is_element_present(element_with_error_message, 'By.XPATH'):
                 actual_error_model.__dict__[field_name] = self.get_text(element_with_error_message, 'By.XPATH')
-
+        self.logger.info(actual_error_model.__dict__.items())
         return actual_error_model
 
     @allure.step
-    def get_expected_validation_errors(self, field, validation_type, error_model):
-        expected_error_model = error_model()
+    def get_expected_validation_errors(self, field, validation_type):
+        expected_error_model = RegistrationFormErrorsModel()
         all_expected_validation_errors_dict = RegistrationFormErrorsModel.expected_validation_errors()
-        print(field, validation_type)
         if validation_type:
             expected_error_message = all_expected_validation_errors_dict[field][validation_type]
             expected_error_model.__dict__[field] = expected_error_message
         else:
             expected_error_message = all_expected_validation_errors_dict[field]
             expected_error_model.__dict__[field] = expected_error_message
+            self.logger.info(expected_error_model.__dict__.items())
         return expected_error_model
 
     @allure.step
-    def compare_actual_and_expected_validation_errors(self, actual_errors, expected_errors):
+    def compare_actual_and_expected_input_validation_errors(self, actual_errors, expected_errors):
         for field in expected_errors.__dict__.keys():
             if expected_errors.__dict__[field] != actual_errors.__dict__[field]:
                 print(f"ОЖИДАЛОСЬ: {expected_errors.__dict__[field]}, ПОЛУЧЕНО: {actual_errors.__dict__[field]}")
                 return False
-
         return True
-
-    # @allure.step
-    # def check_checkboxes_validation(self):
-    #     """Проверяем наличие ошибки валидации чек-бокса"""
-    #     self.assert_element(self._registration_page_locators.REGISTRATION_CHECKBOX_VALIDATION_CSS)

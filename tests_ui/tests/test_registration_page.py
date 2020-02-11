@@ -39,24 +39,11 @@ class TestValidationRegistrationPage(RegistrationPage):
         # self.logger.info(user.__dict__.items())
         self.click_registration_button()
         self.fill_registration_form_fl(user)
-        self.actions_with_required_checkboxes()
+        self.actions_with_required_checkboxes(check_box_1=user.confirm_1,
+                                              check_box_2=user.confirm_2)
         self.continue_registration()
-        if not self.compare_actual_and_expected_validation_errors(
+        if not self.compare_actual_and_expected_input_validation_errors(
                 self.get_actual_validation_errors(error_model=RegistrationFormErrorsModel),
                 self.get_expected_validation_errors(field=user.invalid_field,
-                                                    validation_type=user.validation_type,
-                                                    error_model=RegistrationFormErrorsModel)):
+                                                    validation_type=user.validation_type)):
             self.soft_assert(status=False, log_message=f"Сообщение об ошибке валидации в поле {user.invalid_field} некорректно")
-
-    # @parameterized.expand([
-    #     (False, True),
-    #     (True, False),
-    # ])
-    # @pytest.mark.negative
-    # def test_registration_form_checkbox_validation(self, param1, param2):
-    #     user = UserGenerator().fake_user(self.user_data)
-    #     self.click_registration_button(self)
-    #     self.fill_registration_form_fl(user)
-    #     self.actions_with_required_checkboxes()
-    #     self.continue_registration()
-    #     self.check_checkboxes_validation()

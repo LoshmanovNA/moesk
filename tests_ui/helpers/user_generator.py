@@ -23,6 +23,8 @@ class UserGenerator:
         user_model.patronymic_name = valid_data['patronymic_name']
         user_model.phone = valid_data['phone']
         user_model.email = valid_data['email']
+        user_model.confirm_1 = valid_data['confirm_1']
+        user_model.confirm_2 = valid_data['confirm_2']
         return user_model
 
     def invalid_user(self):
@@ -41,7 +43,8 @@ class UserGenerator:
                             user_data[field] = invalid_value  # И перезаписываем валидное значение невалидным. Получается словарь с одним невалидным полем среди остальных валидных
                             yield [UserModel(**user_data)]  # распаковываем словарь в модель пользователя, названия ключей соответствуют атрибутам класса
                     else:
-                        user_data[field] = invalid_data[field]  # Если в значении строка
+                        user_data[field] = invalid_data[field]  # Если в значении строка или не итерируемый объект
+                        # self.logger.info(user_data.items())
                         yield [UserModel(**user_data)]
                 else:
                     for validation_type, invalid_value in invalid_data[field].items():  # Если ключ содержит в значении словарь с типами валидации
@@ -65,28 +68,30 @@ class UserGenerator:
             'last_name': self.fake_ru.last_name_male(),
             'patronymic_name': self.fake_ru.middle_name_male(),
             'phone': '99851234567',
-            'email': self.fake_ru.email()
+            'email': self.fake_ru.email(),
+            'confirm_1': True,
+            'confirm_2': True
         }
 
     def fake_invalid_data(self):
-        return {'first_name': {'invalid': [self.fake_ru.first_name_male().lower(),
+        return {
+                'first_name': {'invalid': [self.fake_ru.first_name_male().lower(),
                                            self.fake_ru.first_name_male().upper(),
                                            self.fake_en.first_name_male()],
                                'empty': ''
                                },
-
                 'last_name': {'invalid': [self.fake_ru.last_name_male().lower(),
                                           self.fake_ru.last_name_male().upper(),
                                           self.fake_en.last_name_male()],
                               'empty': ''
                               },
-
                 'patronymic_name': {'invalid': [self.fake_ru.middle_name_male().lower(),
                                                 self.fake_ru.middle_name_male().upper(),
                                                 self.fake_en.name_male()],
                                     'empty': ''
                                     },
-
                 'phone': ['1234567890', '47224567890', '!#$!%!@', ''],
-
-                'email': ['plainaddress', 'email.example.com', 'email@example', '']}
+                'email': ['plainaddress', 'email.example.com', 'email@example', ''],
+                'confirm_1': False,
+                'confirm_2': False
+                }

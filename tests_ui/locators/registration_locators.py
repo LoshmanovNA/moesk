@@ -28,9 +28,7 @@ class RegistrationPageLocators:
         'last_name': '//input[@id="user_last_name"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div',
         'patronymic_name': '//input[@id="user_patronymic_name"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div',
         'phone': '//input[@id="phone_input"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div',
-        'email': '//input[@id="user_email"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div'
+        'email': '//input[@id="user_email"]/ancestor::span[contains (@class, "invalid")]/following-sibling::div',
+        'confirm_1': '//input[@id="confirm1"]/ancestor::label[contains (@class, "invalid")]/following-sibling::span',
+        'confirm_2': '//input[@id="confirm2"]/ancestor::label[contains (@class, "invalid")]/following-sibling::span'
     }
-
-    #  Ошибки валидации чек-боксов
-    REGISTRATION_INVALID_CHECKBOX1_XPATH = '//input[@id="confirm1"]/ancestor::label[contains (@class, "invalid")]/following-sibling::span'
-    REGISTRATION_INVALID_CHECKBOX2_XPATH = '//input[@id="confirm2"]/ancestor::label[contains (@class, "invalid")]/following-sibling::span'
