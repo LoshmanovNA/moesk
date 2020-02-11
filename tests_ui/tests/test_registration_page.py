@@ -33,7 +33,7 @@ class TestValidationRegistrationPage(RegistrationPage):
     """Проверка валидации полей и чекбоксов формы регистрации"""
     _generator = UserGenerator()
 
-    @parameterized.expand(_generator.invalid_user())
+    @parameterized.expand(_generator.generate_negative_params())
     @pytest.mark.negative
     def test_registration_form_fields_validation(self, user):
         # self.logger.info(user.__dict__.items())
@@ -42,6 +42,7 @@ class TestValidationRegistrationPage(RegistrationPage):
         self.actions_with_required_checkboxes(check_box_1=user.confirm_1,
                                               check_box_2=user.confirm_2)
         self.continue_registration()
+
         if not self.compare_actual_and_expected_input_validation_errors(
                 self.get_actual_validation_errors(error_model=RegistrationFormErrorsModel),
                 self.get_expected_validation_errors(field=user.invalid_field,
