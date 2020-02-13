@@ -1,6 +1,7 @@
 from ..models.validation_errors import RegistrationFormErrorsModel
 from ..locators import LoginPageLocators, RegistrationPageLocators
 from ..pages.base_page import BasePage
+from ..helpers.onesec_api import Mailbox
 
 import allure
 
@@ -9,6 +10,7 @@ class RegistrationPage(BasePage):
     """Действия на странице регистрации"""
     _login_page_locators = LoginPageLocators()
     _registration_page_locators = RegistrationPageLocators()
+    temp_mail = Mailbox('')  # Временная почта: <random value>@1secmail.com
 
     @allure.step
     def click_registration_button(self):
@@ -26,8 +28,12 @@ class RegistrationPage(BasePage):
         self.update_text(self._registration_page_locators.REGISTRATION_NAME_CSS, user_model.first_name)
         self.update_text(self._registration_page_locators.REGISTRATION_SURNAME_CSS, user_model.last_name)
         self.update_text(self._registration_page_locators.REGISTRATION_PATRONYMIC_CSS, user_model.patronymic_name)
-        self.update_text(self._registration_page_locators.REGISTRATION_EMAIL_CSS, user_model.email)
         self.update_text(self._registration_page_locators.REGISTRATION_PHONE_CSS, user_model.phone)
+        if self.env == 'production':
+            self.update_text(self._registration_page_locators.REGISTRATION_EMAIL_CSS, self.temp_mail.email())
+            self.logger.info(self.temp_mail.email())
+        else:
+            self.update_text(self._registration_page_locators.REGISTRATION_EMAIL_CSS, user_model.email)
 
     @allure.step
     def actions_with_required_checkboxes(self, check_box_1=True, check_box_2=True):
@@ -47,7 +53,13 @@ class RegistrationPage(BasePage):
         """Проверяем, что находимся на странице с информацией об отправке email"""
         url = self.get_current_url()  # Получаем текущий url
         expected_text = 'email_sent'
-        assert expected_text in url, f"Message: {url} not contains {expected_text}"
+        assert expected_text in url, f"Ссылка {url} не содержит текст '{expected_text}'"
+
+    @allure.step
+    def should_be_confirmation_email(self):
+        confirmation_link = self.temp_mail.get_link('utp.moesk.ru', 'Подтверждение e-mail')
+        self.logger.info(confirmation_link)
+        assert 'confirmation_token' in confirmation_link, f"Ссылка {confirmation_link} не содержит токен "
 
     @allure.step
     def get_actual_validation_errors(self, error_model):

@@ -16,40 +16,40 @@ class UserGenerator:
         self.fake_en = self.faker['en_US']
         self.logger = logging.getLogger(__name__)
 
-    def valid_user(self):
-        return UserModel(first_name=self.fake_ru.first_name_male(),
-                         last_name=self.fake_ru.last_name_male(),
-                         patronymic_name=self.fake_ru.middle_name_male(),
-                         phone='99851234567',
-                         email=self.fake_ru.email(),
-                         confirm_1=True,
-                         confirm_2=True)
+    def valid_user(self, model):
+        return model(first_name=self.fake_ru.first_name_male(),
+                     last_name=self.fake_ru.last_name_male(),
+                     patronymic_name=self.fake_ru.middle_name_male(),
+                     phone='99851234567',
+                     email=self.fake_ru.email(),
+                     confirm_1=True,
+                     confirm_2=True)
 
-    def invalid_user(self):
-        return UserModel(first_name={'invalid': [self.fake_ru.first_name_male().lower(),
-                                                 self.fake_ru.first_name_male().upper(),
-                                                 self.fake_en.first_name_male()],
-                                     'empty': ''
-                                     },
-                         last_name={'invalid': [self.fake_ru.last_name_male().lower(),
-                                                self.fake_ru.last_name_male().upper(),
-                                                self.fake_en.last_name_male()],
-                                    'empty': ''
-                                    },
-                         patronymic_name={'invalid': [self.fake_ru.middle_name_male().lower(),
-                                                      self.fake_ru.middle_name_male().upper(),
-                                                      self.fake_en.name_male()],
-                                          'empty': ''
-                                          },
-                         phone=['1234567890', '47224567890', '!#$!%!@', ''],
-                         email=['plainaddress', 'email.example.com', 'email@example', ''],
-                         confirm_1=False,
-                         confirm_2=False)
+    def invalid_user(self, model):
+        return model(first_name={'invalid': [self.fake_ru.first_name_male().lower(),
+                                             self.fake_ru.first_name_male().upper(),
+                                             self.fake_en.first_name_male()],
+                                 'empty': ''
+                                 },
+                     last_name={'invalid': [self.fake_ru.last_name_male().lower(),
+                                            self.fake_ru.last_name_male().upper(),
+                                            self.fake_en.last_name_male()],
+                                'empty': ''
+                                },
+                     patronymic_name={'invalid': [self.fake_ru.middle_name_male().lower(),
+                                                  self.fake_ru.middle_name_male().upper(),
+                                                  self.fake_en.name_male()],
+                                      'empty': ''
+                                      },
+                     phone=['1234567890', '47224567890', '!#$!%!@', ''],
+                     email=['plainaddress', 'email.example.com', 'email@example', ''],
+                     confirm_1=False,
+                     confirm_2=False)
 
     def generate_negative_params(self):
         """Генерация пользователя с одним невалидным параметром"""
-        valid_data = self.valid_user().__dict__
-        invalid_data = self.invalid_user().__dict__
+        valid_data = self.valid_user(UserModel).__dict__
+        invalid_data = self.invalid_user(UserModel).__dict__
 
         def negative_user_model(field_name, field_value, valid_type=None):
             """
@@ -57,7 +57,7 @@ class UserGenerator:
             заменяет валидное значение для указанного поля (field_name) невалидным значением (field_value)
             При наличии, записывает в модель тип валидации validation_type
             """
-            model = self.valid_user()
+            model = self.valid_user(UserModel)
             model.invalid_field = field_name
             model.__dict__[field_name] = field_value
             if valid_type:

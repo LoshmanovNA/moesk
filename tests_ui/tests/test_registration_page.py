@@ -6,36 +6,42 @@ from parameterized import parameterized
 import pytest
 
 
-# class TestRegistrationPage(RegistrationPage):
-#     """Тест создания новой учетной записи"""
-#
-#     def test_registration_form(self):
-#         """
-#         Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу
-#         подтверждения регистрации, проверяем наличие новой записи в БД, удаляем новую УЗ из БД
-#         """
-#         self.user = UserGenerator().valid_user()(self.user_data)
-#         self.click_registration_button()
-#         self.fill_registration_form_fl(self.user)
-#         self.actions_with_required_checkboxes()
-#         self.continue_registration()
-#         self.should_be_confirm_page()
-#         if self.env == 'test':
-#             self.connect.should_be_new_record_into_db(self.user.email, 'email', 'users')
-#
-#     def tearDown(self):
-#         if self.env == 'test':
-#             self.connect.delete_new_account_from_db(self.user.email)
-#         super(TestRegistrationPage, self).tearDown()
+@pytest.mark.test_env
+@pytest.mark.production_env
+class TestRegistrationPage(RegistrationPage):
+    """Тест создания новой учетной записи"""
+
+    def test_registration_form(self):
+        """
+        Генерируем тестовые данные и регистрируем пользователя типа ФЛ, проверям страницу
+        подтверждения регистрации, проверяем наличие новой записи в БД, удаляем новую УЗ из БД
+        """
+        self.new_user_data = UserGenerator().valid_user(UserModel)
+        self.click_registration_button()
+        self.fill_registration_form_fl(self.new_user_data)
+        self.actions_with_required_checkboxes()
+        self.continue_registration()
+        self.should_be_confirm_page()
+        if self.env == 'production':
+            self.should_be_confirmation_email()
+        if self.env == 'test':
+            self.connect.should_be_new_record_into_db(self.new_user_data.email, 'email', 'users')
+
+    def tearDown(self):
+        if self.env == 'test':
+            self.connect.delete_new_account_from_db(self.new_user_data.email)
+        super(TestRegistrationPage, self).tearDown()
 
 
+@pytest.mark.test_env
+@pytest.mark.production_env
 class TestValidationRegistrationPage(RegistrationPage):
     """Проверка валидации полей и чекбоксов формы регистрации"""
     _generator = UserGenerator()
 
     @parameterized.expand(_generator.generate_negative_params())
     @pytest.mark.negative
-    def test_registration_form_fields_validation(self, user):
+    def test_registration_form_validation(self, user):
         # self.logger.info(user.__dict__.items())
         self.click_registration_button()
         self.fill_registration_form_fl(user)

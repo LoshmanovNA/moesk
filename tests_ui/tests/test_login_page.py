@@ -1,11 +1,14 @@
 from ..pages.login_page import LoginPage
 from ..pages.registration_page import RegistrationPage
 from ..helpers.user_generator import UserGenerator
+from ..models.user_model import UserModel
 
 import pytest
 
 
 @pytest.mark.existing_user
+@pytest.mark.test_env
+@pytest.mark.production_env
 class TestLoginExistingUser(LoginPage):
     """Тестируем авторизацию под существующим пользователем и регистрацию нового физ.лица"""
 
@@ -15,8 +18,8 @@ class TestLoginExistingUser(LoginPage):
         и проверка нахождения на главной странице ЛК
         """
         self.get(self.app_url)
-        self.login_user(self.user_data.user_login_fl,
-                        self.user_data.user_login_fl)  # Вводим логин и пароль
+        self.login_user(self.config_data.user_login_fl,
+                        self.config_data.password)  # Вводим логин и пароль
         self.should_be_main_page_lk()  # Проверям главную страницу путем поиска ссылки на профиль
 
 
@@ -31,22 +34,20 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
     def setUp(self):
         """Генерируем данные для нового пользователя и выполняем регистрацию"""
         super(TestLoginNewUser, self).setUp()
-        self.new_user = UserGenerator().valid_user(self.user_data)  # Генерируем класс с тестовыми данными для регистрации
+        self.new_user_data = UserGenerator().valid_user(UserModel)  # Генерируем класс с тестовыми данными для регистрации
 
-        self.get(self.app_url)
-        self.fill_registration_form_fl(first_name=self.new_user.first_name,
-                                       last_name=self.new_user.last_name,
-                                       patronymic_name=self.new_user.patronymic_name,
-                                       phone=self.new_user.phone,
-                                       email=self.new_user.email)
+        self.click_registration_button()
+        self.fill_registration_form_fl(self.new_user_data)
+        self.actions_with_required_checkboxes()
+        self.continue_registration()
         self.should_be_confirm_page()  # Проверяем, что находимся на странице подтверждения успешной регистрации
-        self.connect.activate_new_account_db(self.new_user.email,
-                                             self.user_data.pass_hash)  # Активируем УЗ заполнением нужных полей в БД
+        self.connect.activate_new_account_db(self.new_user_data.email,
+                                             self.config_data.pass_hash)  # Активируем УЗ заполнением нужных полей в БД
 
     def test_login_new_user(self):
         """Авторизация под новым пользователем и проверка нахождения на главной странице ЛК"""
-        login = self.new_user.email  # Сгенерированный в setUp email
-        password = self.user_data.password  # Пароль из конфига
+        login = self.new_user_data.email  # Сгенерированный в setUp email
+        password = self.config_data.password  # Пароль из конфига
 
         self.get(self.app_url)
         self.login_user(login, password)
@@ -54,5 +55,5 @@ class TestLoginNewUser(LoginPage, RegistrationPage):
 
     def tearDown(self):
         """Удаляем запись с новой УЗ из БД"""
-        self.connect.delete_new_account_from_db(self.new_user.email)
+        self.connect.delete_new_account_from_db(self.new_user_data.email)
         super(TestLoginNewUser, self).tearDown()

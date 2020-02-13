@@ -30,7 +30,7 @@ class BasePage(BaseCase):
         self.app_url = env['app_url']  # Берем app_url адрес из соответствующего env в config.ini
         self.logger = logging.getLogger(__name__)
 
-        # Создание соединения с БД
+        # Создание соединения с БД на тесте
         if self.env == 'test':
             db_credentials = DBModel(env['db_host'],
                                      env['db_username'],
@@ -39,13 +39,19 @@ class BasePage(BaseCase):
                                      int(env['db_port']))
             self.connect = DBManager(db_credentials)
 
-        # Данные тестового пользователя
-        self.user_data = UserModel(user_login_fl=env['existing_user_fl'],
-                                   user_login_ul=env['existing_user_ul'],
-                                   user_login_ip=env['existing_user_ip'],
-                                   password=env['password'],
-                                   pass_hash=env['pass_hash'])
-        #  Открываем стартовую страницу
+        # Данные тестового пользователя в тестовой среде
+            self.config_data = UserModel(user_login_fl=env['existing_user_fl'],
+                                         user_login_ul=env['existing_user_ul'],
+                                         user_login_ip=env['existing_user_ip'],
+                                         password=env['password'],
+                                         pass_hash=env['pass_hash'])
+        # Данные тестового пользователя на проде
+        elif self.env == 'production':
+            self.config_data = UserModel(user_login_fl=env['existing_user_fl'],
+                                         user_login_ul=env['existing_user_ul'],
+                                         user_login_ip=env['existing_user_ip'],
+                                         password=env['password'])
+        # Открываем стартовую страницу
         self.get(self.app_url)
 
     def tearDown(self):
