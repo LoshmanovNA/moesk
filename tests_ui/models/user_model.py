@@ -11,8 +11,11 @@ class UserModel:
                  user_login_fl=None,
                  user_login_ul=None,
                  user_login_ip=None,
+                 user_login_representative=None,
                  password=None,
                  pass_hash=None,
+                 company_full_name=None,
+                 company_short_name=None,
                  invalid_field=None,
                  validation_type=None,
                  confirm_1=None,
@@ -26,8 +29,11 @@ class UserModel:
         self.user_login_fl = user_login_fl
         self.user_login_ul = user_login_ul
         self.user_login_ip = user_login_ip
+        self.user_login_representative = user_login_representative
         self.password = password
         self.pass_hash = pass_hash
+        self.company_full_name = company_full_name
+        self.company_short_name = company_short_name
         self.invalid_field = invalid_field
         self.validation_type = validation_type
         self.confirm_1 = confirm_1

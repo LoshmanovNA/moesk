@@ -25,6 +25,7 @@ class BasePage(BaseCase):
         super(BasePage, self).setUp()
 
         config = Config()
+
         # For global environment use config['GLOBAL']
         env = config[self.env.upper()]  # Берем значение заданного окружения (TEST, PRODUCTION, etc)
         self.app_url = env['app_url']  # Берем app_url адрес из соответствующего env в config.ini
@@ -38,11 +39,11 @@ class BasePage(BaseCase):
                                      env['db_schema'],
                                      int(env['db_port']))
             self.connect = DBManager(db_credentials)
-
         # Данные тестового пользователя в тестовой среде
             self.config_data = UserModel(user_login_fl=env['existing_user_fl'],
                                          user_login_ul=env['existing_user_ul'],
                                          user_login_ip=env['existing_user_ip'],
+                                         user_login_representative=env['existing_user_representative'],
                                          password=env['password'],
                                          pass_hash=env['pass_hash'])
         # Данные тестового пользователя на проде
@@ -50,6 +51,7 @@ class BasePage(BaseCase):
             self.config_data = UserModel(user_login_fl=env['existing_user_fl'],
                                          user_login_ul=env['existing_user_ul'],
                                          user_login_ip=env['existing_user_ip'],
+                                         user_login_representative=env['existing_user_representative'],
                                          password=env['password'])
         # Открываем стартовую страницу
         self.get(self.app_url)
