@@ -1,6 +1,6 @@
 from ..models.validation_errors import RegistrationFormErrorsModel
 from ..locators import LoginPageLocators, RegistrationPageLocators
-from ..pages.base_page import BasePage
+from .base_page import BasePage
 from ..helpers.onesec_api import Mailbox
 from selenium.common.exceptions import NoSuchElementException
 

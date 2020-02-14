@@ -7,12 +7,16 @@ class NewTPLocators:
     # Кнопка выпадающего списка для выбор вида заявки
         NEW_TP_CLAIM_TYPE_BUTTON_CSS = 'span.selection span[role="presentation"]'
     # Виды заявки в выпадающем списке
-        NEW_TP_NEW_CONNECTION_CSS = 'span>ul>li:first-child'
-        NEW_TP_TEMPORARY_CONNECTION_CSS = 'span>ul>li:nth-child(2)'
-        NEW_TP_POWER_INCREASE_CSS = 'span>ul>li:nth-child(3)'
-        NEW_TP_REASSIGNMENT_CSS = 'span>ul>li:nth-child(4)'
+        NEW_TP_NEW_CONNECTION_CSS = 'span>ul>li:first-child'  # Новое присоединение
+        NEW_TP_TEMPORARY_CONNECTION_CSS = 'span>ul>li:nth-child(2)'  # Временное присоединение
+        NEW_TP_POWER_INCREASE_CSS = 'span>ul>li:nth-child(3)'  # Увеличение мощности
+        NEW_TP_REASSIGNMENT_CSS = 'span>ul>li:nth-child(4)'  # Переуступка
+    # Чек-бокс "Переуступка по собственному договору"
+        NEW_TP_REASSIGNMENT_CHECKBOX_CSS = '#is_tu_cession_self_contract'
+    # Поле "Номер заявки" при выбранном виде заявки "Переуступка"
+        NEW_TP_REASSIGNMENT_CLAIM_NUMBER_CSS = '#claim_parent_number_1c'
     # Кнопка "Далее"
-        NEW_TP_NEXT_BUTTON_CSS = '#nextStep'
+        NEW_TP_NEXT_BUTTON_CSS = '.card-controls button[type="Submit"]'
         NEW_TP_CANCEL_CLAIM_CSS = '.card-controls a[href="/"]'
 
     class SecondStep:

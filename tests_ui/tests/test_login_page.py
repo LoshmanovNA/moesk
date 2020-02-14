@@ -1,5 +1,5 @@
-from ..pages.login_page import LoginPage
-from ..pages.registration_page import RegistrationPage
+from ..pages import LoginPage
+from ..pages import RegistrationPage
 from ..helpers.user_generator import UserGenerator
 
 
