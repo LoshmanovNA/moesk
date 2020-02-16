@@ -1,6 +1,6 @@
 from ..pages import LoginPage
 from ..pages import RegistrationPage
-from ..helpers.user_generator import UserGenerator
+from ..helpers import UserGenerator
 
 
 import pytest

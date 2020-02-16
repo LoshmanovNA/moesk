@@ -3,3 +3,4 @@ from .registration_page import RegistrationPage
 from .warning_page import WarningPage
 from .main_page import MainPage
 from .base_page import BasePage
+from .claim_first_step_page import ClaimsFirstStepPage

@@ -3,3 +3,6 @@ from .common_locators import CommonLocators
 from .login_page_locators import LoginPageLocators
 from .main_page_locators import MainPageLocators
 from .warning_page_locators import WarningPageLocators
+from .claim_first_step_locators import ClaimsFirstStepLocators
+from .claims_second_step_locators import ClaimsSecondStepLocators
+from .claims_third_step_locators import ClaimsThirdStepLocators

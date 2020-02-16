@@ -1,6 +1,6 @@
 from ..pages import RegistrationPage
-from ..helpers.user_generator import UserGenerator
-from ..models.validation_errors import RegistrationFormErrorsModel
+from ..helpers import UserGenerator
+from ..models import RegistrationFormErrorsModel
 from parameterized import parameterized
 import pytest
 

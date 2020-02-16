@@ -2,7 +2,7 @@ import logging
 
 from collections.abc import Iterable
 from faker import Faker
-from ..models.user_model import UserModel
+from ..models import UserModel
 
 
 class UserGenerator:

@@ -2,8 +2,8 @@ import logging
 
 from seleniumbase import BaseCase
 from ..helpers.db_actions import DBManager
-from ..models.db_model import DBModel
-from ..models.user_model import UserModel
+from ..models import DBModel
+from ..models import UserModel
 from ...config_loader import Config
 
 
