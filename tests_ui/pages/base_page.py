@@ -54,6 +54,7 @@ class BasePage(BaseCase):
                                          user_login_representative=env['existing_user_representative'],
                                          password=env['password'])
         # Открываем стартовую страницу
+        self.maximize_window()
         self.get(self.app_url)
 
     def tearDown(self):

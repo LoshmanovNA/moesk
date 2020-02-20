@@ -15,6 +15,9 @@ class ClaimsFirstStepLocators:
     FIRST_STEP_REASSIGNMENT_CHECKBOX_CSS = '#is_tu_cession_self_contract'
     # Поле "Номер заявки" при выбранном виде заявки "Переуступка"
     FIRST_STEP_REASSIGNMENT_CLAIM_NUMBER_CSS = '#claim_parent_number_1c'
+    # Причина тех. присоединения при заявке сетевой организации от ЮЛ
+    FIRST_STEP_NETWORK_ORGANIZATION_REASON_1 = '#claim_claim_reason_id_7'  # Сумма максимальных мощностей...
+    FIRST_STEP_NETWORK_ORGANIZATION_REASON_2 = '#claim_claim_reason_id_8'  # Для обеспечения присоединения объектов...
 
     # Кнопка "Далее"
     FIRST_STEP_NEXT_BUTTON_CSS = '.card-controls button[type="Submit"]'
