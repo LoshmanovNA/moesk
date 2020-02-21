@@ -66,7 +66,7 @@ class UserGenerator:
             model.__dict__[field_name] = field_value
             if valid_type:
                 model.validation_type = valid_type
-            # self.logger.info(model.__dict__.items())
+            self.logger.info(model.__dict__.items())
             return [model]
 
         for field in invalid_data.keys():  # Проходим по каждому ключу в модели invalid_data, приведенной к словарю.

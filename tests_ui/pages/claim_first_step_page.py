@@ -9,23 +9,29 @@ class ClaimsFirstStepPage(WarningPage):
     _first_step = ClaimsFirstStepLocators
     _claim_model = ClaimModel()
 
-    @allure.step
-    def select_claim_type_new_tp(self):
-        self.click(self._first_step.FIRST_STEP_CLAIM_TYPE_BUTTON_CSS)
-        self.click(self._first_step.FIRST_STEP_NEW_CONNECTION_XPATH, 'By.XPATH')
+    def go_through_first_step_new_connection(self):
+        self._select_claim_type_new_tp()
+        self._go_to_second_step()
 
     @allure.step
-    def select_claim_type_temporary_connection(self):
+    def _select_claim_type_new_tp(self):
+        select_claim_type = self._first_step.FIRST_STEP_CLAIM_TYPE_BUTTON_CSS
+        if self.is_element_visible(select_claim_type):
+            self.click(self._first_step.FIRST_STEP_CLAIM_TYPE_BUTTON_CSS)
+            self.click(self._first_step.FIRST_STEP_NEW_CONNECTION_XPATH, 'By.XPATH')
+
+    @allure.step
+    def _select_claim_type_temporary_connection(self):
         self.click(self._first_step.FIRST_STEP_CLAIM_TYPE_BUTTON_CSS)
         self.click(self._first_step.FIRST_STEP_TEMPORARY_CONNECTION_XPATH, 'By.XPATH')
 
     @allure.step
-    def select_claim_type_power_increase(self):
+    def _select_claim_type_power_increase(self):
         self.click(self._first_step.FIRST_STEP_CLAIM_TYPE_BUTTON_CSS)
         self.click(self._first_step.FIRST_STEP_POWER_INCREASE_XPATH, 'By.XPATH')
 
     @allure.step
-    def select_claim_type_power_reassignment(self):
+    def _select_claim_type_power_reassignment(self):
         self.click(self._first_step.FIRST_STEP_CLAIM_TYPE_BUTTON_CSS)
         self.click(self._first_step.FIRST_STEP_REASSIGNMENT_XPATH, 'By.XPATH')
         # Выклчюаем чек-бокс переуступки по собственному договору (на случай, если существующих заявок нет)
@@ -35,10 +41,10 @@ class ClaimsFirstStepPage(WarningPage):
                          self._claim_model.reassignment_claim_number)
 
     @allure.step
-    def go_to_second_step(self):
+    def _go_to_second_step(self):
         self.click(self._first_step.FIRST_STEP_NEXT_BUTTON_CSS)
 
     @allure.step
-    def click_cancel_claim(self):
+    def _click_cancel_claim(self):
         self.click(self._first_step.FIRST_STEP_CANCEL_CLAIM_CSS)
 

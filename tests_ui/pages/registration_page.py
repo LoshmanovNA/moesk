@@ -124,7 +124,7 @@ class RegistrationPage(BasePage):
         for field_name, element_with_error_message in registration_form_elements:
             if self.is_element_present(element_with_error_message, 'By.XPATH'):
                 actual_error_model.__dict__[field_name] = self.get_text(element_with_error_message, 'By.XPATH')
-        # self.logger.info(actual_error_model.__dict__.items())
+        self.logger.debug(actual_error_model.__dict__.items())
         return actual_error_model
 
     @allure.step
@@ -137,7 +137,7 @@ class RegistrationPage(BasePage):
         else:
             expected_error_message = all_expected_validation_errors_dict[field]
             expected_error_model.__dict__[field] = expected_error_message
-            # self.logger.info(expected_error_model.__dict__.items())
+            self.logger.debug(expected_error_model.__dict__.items())
         return expected_error_model
 
     @allure.step

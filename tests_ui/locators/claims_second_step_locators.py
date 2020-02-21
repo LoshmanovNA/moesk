@@ -74,7 +74,7 @@ class ClaimsSecondStepLocators:
 
     # Включенный чек-бокс "Совпадает с адресом по месту регистрации" и локатор для клика
     SECOND_STEP_FACT_ADDRESS_IS_MATCH_CHECKBOX_ENABLED_XPATH = '//input[contains(@id, "is_address_equal")]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_FACT_ADDRESS_IS_MATCH_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "is_address_equal")]'
+    SECOND_STEP_FACT_ADDRESS_IS_MATCH_CHECKBOX_TARGET_CSS = 'label[for="is_address_equal"]'
 
     # Поля адреса для направления корреспонденции (фактического адреса)
     # Поле ввода полного адреса
@@ -104,44 +104,44 @@ class ClaimsSecondStepLocators:
 
     # Блок "Получение кассового чека при онлайн-оплате счета по заявке". Включенный чек бокс и локатор для клика
     SECOND_STEP_ENABLED_GET_RECEIPT_BY_EMAIL_CHECKBOX_XPATH = '//input[@id="is_email_receipt"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_GET_RECEIPT_BY_EMAIL_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "is_email_receipt")]'
+    SECOND_STEP_GET_RECEIPT_BY_EMAIL_CHECKBOX_TARGET_CSS = 'label[for="is_email_receipt"]'
 
     SECOND_STEP_ENABLED_GET_RECEIPT_BY_PHONE_CHECKBOX_XPATH = '//input[@id="is_phone_receipt"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_GET_RECEIPT_BY_PHONE_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "is_phone_receipt")]'
+    SECOND_STEP_GET_RECEIPT_BY_PHONE_CHECKBOX_TARGET_CSS = 'label[for="is_phone_receipt"]'
 
     SECOND_STEP_ENABLED_REFUSED_OF_RECEIPT_CHECKBOX_XPATH = '//input[@id="claim_receipt_refused"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_REFUSED_OF_RECEIPT_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "claim_receipt_refused")]'
+    SECOND_STEP_REFUSED_OF_RECEIPT_CHECKBOX_TARGET_CSS = 'label[for="claim_receipt_refused"]'
 
     # Блок "Получение уведомлений о рассмотрении заявки". Включенный чек бокс и локатор для клика
     SECOND_STEP_ENABLED_EMAIL_NOTICE_CHECKBOX_XPATH = '//input[@id="user_email_notice"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_EMAIL_NOTICE_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "user_email_notice")]'
+    SECOND_STEP_EMAIL_NOTICE_CHECKBOX_TARGET_CSS = 'label[for="user_email_notice"]'
 
     SECOND_STEP_ENABLED_PHONE_NOTICE_CHECKBOX_XPATH = '//input[@id="user_phone_notice"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_PHONE_NOTICE_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "user_phone_notice")]'
+    SECOND_STEP_PHONE_NOTICE_CHECKBOX_TARGET_CSS = 'label[for="user_phone_notice"]'
 
     SECOND_STEP_ENABLED_AUTOINFORM_NOTICE_CHECKBOX_XPATH = '//input[@id="user_call_notice"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_AUTOINFORM_NOTICE_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "user_call_notice")]'
+    SECOND_STEP_AUTOINFORM_NOTICE_CHECKBOX_TARGET_CSS = 'label[for="user_call_notice"]'
 
     # Блок оформления по доверенности
     SECOND_STEP_IS_PROXY_CHECKBOX_ENABLED_XPATH = '//input[@id="claim_is_proxy"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_PROXY_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "claim_is_proxy")]'
+    SECOND_STEP_PROXY_CHECKBOX_TARGET_CSS = 'label[for="claim_is_proxy"]'
     SECOND_STEP_PROXY_NUMBER_CSS = '#claim_user_proxy_number'
     SECOND_STEP_PROXY_DATE_CSS = '#claim_user_proxy_date'
     SECOND_STEP_PROXY_FIO_CSS = '#claim_user_proxy_fio'
     # Способы получения уведомлений в блоке "По доверенности" (включены по умолчанию). Вкл. чек боксы и локаторы для клика
     SECOND_STEP_ENABLED_TRUSTEE_EMAIL_CHECKBOX_XPATH = '//input[@id="trustee_email_notice"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_TRUSTEE_EMAIL_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "trustee_email_notice")]'
+    SECOND_STEP_TRUSTEE_EMAIL_CHECKBOX_TARGET_CSS = 'label[for="trustee_email_notice"]'
 
     SECOND_STEP_ENABLED_TRUSTEE_PHONE_CHECKBOX_XPATH = '//input[@id="trustee_phone_notice"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_TRUSTEE_PHONE_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "trustee_phone_notice")]'
+    SECOND_STEP_TRUSTEE_PHONE_CHECKBOX_TARGET_CSS = 'label[for="trustee_phone_notice"]'
 
     SECOND_STEP_ENABLED_TRUSTEE_CALL_CHECKBOX_XPATH = '//input[@id="trustee_call_notice"]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_TRUSTEE_CALL_CHECKBOX_TARGET_XPATH = '//label[contains(@for, "trustee_call_notice")]'
+    SECOND_STEP_TRUSTEE_CALL_CHECKBOX_TARGET_CSS = 'label[for="trustee_call_notice"]'
     # E-mail и телефон для получения уведомлений при активном блоке "По доверенности"
     SECOND_STEP_TRUSTEE_EMAIL_CSS = 'input#claim_trustee_email'
     SECOND_STEP_TRUSTEE_PHONE_CSS = 'input#claim_trustee_phone_input'
 
     # Блок кнопок навигации и сохранения заявки
-    SECOND_STEP_BACK_BUTTON_CSS = '.card-controls a[href*="edit"]'
+    SECOND_STEP_BACK_BUTTON_CSS = '.card-controls a[href*="claims"]'
     SECOND_STEP_NEXT_STEP_CSS = '#nextStep'
     SECOND_STEP_SAVE_DRAFT_CSS = 'a.link[href="/"]'

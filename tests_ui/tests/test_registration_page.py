@@ -104,7 +104,7 @@ class TestValidationRegistrationPage(RegistrationPage):
     @parameterized.expand(UserGenerator().generate_negative_params())
     def test_registration_form_validation_ip(self, user):
         """Тест валидации формы регистрации ИП"""
-        # self.logger.info(user.__dict__.items())
+        self.logger.debug(user.__dict__.items())
         self.click_registration_button()
         self.select_user_type_ip()
         self.common_registration_actions(user)
@@ -112,7 +112,7 @@ class TestValidationRegistrationPage(RegistrationPage):
     @parameterized.expand(UserGenerator().generate_negative_params())
     def test_registration_form_validation_representative(self, user):
         """Тест валидации формы регистрации представителя по доверенности"""
-        # self.logger.info(user.__dict__.items())
+        self.logger.debug(user.__dict__.items())
         self.click_registration_button()
         self.select_user_type_representative()
         self.common_registration_actions(user)
