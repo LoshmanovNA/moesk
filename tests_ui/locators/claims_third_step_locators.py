@@ -6,7 +6,7 @@ class ClaimsThirdStepLocators:
     THIRD_STEP_FIRST_VALUE_FROM_LIST_CSS = 'ul[style*="display: block"] > li[tabindex]'
 
     # Блок "Энергопринимющие устройства"
-    THIRD_STEP_EPU_TYPE_FIELD_CSS = '.epu_epu_type > .custom-combobox'  # Наименование ЭПУ (открыть список)
+    THIRD_STEP_EPU_TYPE_FIELD_CSS = 'div.epu_epu_type > span > a'  # Наименование ЭПУ (открыть список)
     THIRD_STEP_CADASTRAL_YES_CSS = 'label[for="cadastral_availability_yes"]'  # Кадастровый номер есть (радиобатон)
     THIRD_STEP_CADASTRAL_NO_CSS = 'label[for="cadastral_availability_no"]'  # Кадастровый номер отсутствует (радиобатон)
     THIRD_STEP_INPUT_CADASTRAL_CSS = 'input#epu_cadastral_number'  # Поле ввода кадастрового номера
@@ -25,7 +25,7 @@ class ClaimsThirdStepLocators:
     THIRD_STEP_EPU_CORPS_CSS = 'input#epu_corps'  # Поле ввода номера корпуса
     THIRD_STEP_EPU_BUILDING_CSS = 'input#epu_building'  # Поле ввода номера строения
     THIRD_STEP_EPU_INDEX_CSS = 'input#epu_postcode'  # Поле ввода номера индекса
-    THIRD_STEP_EPU_CLEAR_BUTTON = 'input#epu_clear_address'  # Кнопка очистить адрес
+    THIRD_STEP_EPU_CLEAR_BUTTON_CSS = 'input#epu_clear_address'  # Кнопка очистить адрес
 
     # Блок "Мощность и напряжение"
     THIRD_STEP_MAX_POWER_CSS = 'input#epu_max_power'  # Ввод максимальной мощности для присоединения

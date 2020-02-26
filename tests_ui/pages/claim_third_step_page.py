@@ -15,36 +15,39 @@ class ClaimsThirdStepPage(ClaimsSecondStepPage, BaseElements):
         """Заполнение 3 шага заявки"""
         claim_model = model() if model else ClaimModel()
 
-        self._select_epu_type()
+        self._select_epu_type(model=claim_model)
         self._input_cadastral_number(model=claim_model)
         self._fill_epu_address_form(region=region, city=city, model=claim_model)
         self._enter_max_power_value(power=power, model=claim_model)
         self._select_voltage_level(voltage_level=voltage, model=claim_model)
         self._select_reliability_level(reliability_level=reliability, model=claim_model)
         self._enter_connection_points(number_of_points=number_of_points, model=claim_model)
-        self._object_readiness_status()
+        self._object_readiness_status(model=claim_model)
 
     @allure.step
     def _select_epu_type(self, model):
         if model.epu_type:
-            self.click_chain([self._third_step.THIRD_STEP_EPU_TYPE_FIELD_CSS,
-                              self._third_step.THIRD_STEP_FIRST_VALUE_FROM_LIST_CSS])
+            self.click(self._third_step.THIRD_STEP_EPU_TYPE_FIELD_CSS)
+            self.click(self._third_step.THIRD_STEP_FIRST_VALUE_FROM_LIST_CSS)
 
     @allure.step
     def _input_cadastral_number(self, model):
         self.update_text(self._third_step.THIRD_STEP_INPUT_CADASTRAL_CSS, model.cadastral_number)
 
     @allure.step
-    def _fill_epu_address_form(self, model, region=None, city=None):
+    def _fill_epu_address_form(self, model, region=None, area=None, city=None):
         """Заполнение формы с адресом"""
         first_value_from_list = self._second_step_locators.SECOND_STEP_FIRST_VALUE_FROM_LIST_CSS
-        self.click(self._third_step.THIRD_STEP_EPU_CLEAR_BUTTON, 'By.XPATH')
+        self.click(self._third_step.THIRD_STEP_EPU_CLEAR_BUTTON_CSS)
         self.update_text(self._third_step.THIRD_STEP_EPU_REGION_FIELD_CSS, region if region else model.region)
         self.click(first_value_from_list)
         self.update_text(self._third_step.THIRD_STEP_EPU_CITY_FIELD_CSS, city if city else model.city)
         self.click(first_value_from_list)
+        self.update_text(self._third_step.THIRD_STEP_EPU_AREA_FIELD_CSS, area if area else model.area)
+        self.click(first_value_from_list)
         self.update_text(self._third_step.THIRD_STEP_EPU_STREET_CSS, model.street)
         self.click(first_value_from_list)
+        self.update_text(self._third_step.THIRD_STEP_EPU_HOUSE_CSS, model.house)
         self.update_text(self._third_step.THIRD_STEP_EPU_INDEX_CSS, model.post_index)
 
     @allure.step
@@ -90,9 +93,9 @@ class ClaimsThirdStepPage(ClaimsSecondStepPage, BaseElements):
 
         dropdown_list_locator = self._third_step.THIRD_STEP_RELIABILITY_LIST_CSS
         # Локаторы для указания категории надежности при мощности до 150 кВт
-        reliability_level_dropdown_value_locators = {"1": self._third_step.THIRD_STEP_INPUT_RELIABILITY_LEVEL_ONE_CSS,
-                                                     "2": self._third_step.THIRD_STEP_INPUT_RELIABILITY_LEVEL_TWO_CSS,
-                                                     "3": self._third_step.THIRD_STEP_INPUT_RELIABILITY_LEVEL_THREE_CSS}
+        reliability_level_dropdown_value_locators = {"1": self._third_step.THIRD_STEP_DROPDOWN_RELIABILITY_LEVEL_ONE_XPATH,
+                                                     "2": self._third_step.THIRD_STEP_DROPDOWN_RELIABILITY_LEVEL_TWO_XPATH,
+                                                     "3": self._third_step.THIRD_STEP_DROPDOWN_RELIABILITY_LEVEL_THREE_XPATH}
         # Локаторы для указания категории надежности при мощности более 150 кВт
         reliability_level_input_value_locators = {"1": self._third_step.THIRD_STEP_INPUT_RELIABILITY_LEVEL_ONE_CSS,
                                                   "2": self._third_step.THIRD_STEP_INPUT_RELIABILITY_LEVEL_TWO_CSS,
@@ -112,10 +115,12 @@ class ClaimsThirdStepPage(ClaimsSecondStepPage, BaseElements):
 
     @allure.step
     def _enter_connection_points(self, number_of_points, model):
-        if number_of_points:
-            self.update_text(self._third_step.THIRD_STEP_EPU_POINTS_CSS, number_of_points)
-        else:
-            self.update_text(self._third_step.THIRD_STEP_EPU_POINTS_CSS, model.connection_points)
+        epu_points = self._third_step.THIRD_STEP_EPU_POINTS_CSS
+        if self.is_element_visible(epu_points):
+            if number_of_points:
+                self.update_text(epu_points, number_of_points)
+            else:
+                self.update_text(epu_points, model.connection_points)
 
     @allure.step
     def _object_readiness_status(self, model):

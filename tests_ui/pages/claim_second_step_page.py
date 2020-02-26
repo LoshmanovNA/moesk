@@ -11,7 +11,7 @@ class ClaimsSecondStepPage(ClaimsFirstStepPage, BaseElements):
     _second_step = ClaimsSecondStepLocators()
 
     @allure.step
-    def go_through_second_step_new_connection(self, passport=True, region=None, city=None, fact_address_equal=True,
+    def go_through_second_step_new_connection(self, *, passport=True, region=None, city=None, fact_address_equal=True,
                                               sms_notification=False, is_proxy=False, model=None):
         """Объединяет в себе действия по заполнению полей с персональнымид данными для разных видов заявителей"""
         claim_model = model() if model else ClaimModel()
@@ -92,7 +92,7 @@ class ClaimsSecondStepPage(ClaimsFirstStepPage, BaseElements):
             self.update_text(self._second_step.SECOND_STEP_INN_CSS, model.user_inn)
 
     @allure.step
-    def _fill_registration_address_form(self, model, region=None, city=None):
+    def _fill_registration_address_form(self, model, region=None, area=None, city=None):
         """Заполнение формы с адресом регистрации"""
         first_value_from_list = self._second_step_locators.SECOND_STEP_FIRST_VALUE_FROM_LIST_CSS
 
@@ -102,10 +102,14 @@ class ClaimsSecondStepPage(ClaimsFirstStepPage, BaseElements):
         self.click(first_value_from_list)
         self.update_text(self._second_step.SECOND_STEP_REGISTRATION_CITY_FIELD_XPATH,
                          city if city else model.city)
+        self.update_text(self._second_step.SECOND_STEP_REGISTRATION_AREA_FIELD_XPATH,
+                         area if area else model.area)
         self.click(first_value_from_list)
         self.update_text(self._second_step.SECOND_STEP_REGISTRATION_STREET_FIELD_XPATH,
                          model.street)
         self.click(first_value_from_list)
+        self.update_text(self._second_step.SECOND_STEP_REGISTRATION_HOUSE_XPATH,
+                         model.house)
         self.update_text(self._second_step.SECOND_STEP_REGISTRATION_INDEX_XPATH,
                          model.post_index)
 
@@ -122,22 +126,28 @@ class ClaimsSecondStepPage(ClaimsFirstStepPage, BaseElements):
                              enabled=True if equal else False)
 
     @allure.step
-    def _fill_fact_address_form(self, model, region=None, city=None):
+    def _fill_fact_address_form(self, model, region=None, area=None, city=None):
         """Заполнение формы с адресом для направления корреспонденции"""
-        first_value_from_list = self._second_step_locators.SECOND_STEP_FIRST_VALUE_FROM_LIST_CSS
-
-        self.click(self._second_step.SECOND_STEP_CLEAR_FACT_ADDRESS_BUTTON_XPATH, 'By.XPATH')
-        self.update_text(self._second_step.SECOND_STEP_FACT_REGION_FIELD_XPATH,
-                         region if region else model.region)
-        self.click(first_value_from_list)
-        self.update_text(self._second_step.SECOND_STEP_FACT_CITY_FIELD_XPATH,
-                         city if city else model.city)
-        self.click(first_value_from_list)
-        self.update_text(self._second_step.SECOND_STEP_FACT_STREET_FIELD_XPATH,
-                         model.street)
-        self.click(first_value_from_list)
-        self.update_text(self._second_step.SECOND_STEP_FACT_INDEX_XPATH,
-                         model.post_index)
+        # Если чек-бокс "Совпадает с адресом по месту регистрации" - выключен
+        if not self._second_step.SECOND_STEP_FACT_ADDRESS_IS_MATCH_CHECKBOX_ENABLED_XPATH:
+            first_value_from_list = self._second_step_locators.SECOND_STEP_FIRST_VALUE_FROM_LIST_CSS
+            self.click(self._second_step.SECOND_STEP_CLEAR_FACT_ADDRESS_BUTTON_XPATH, 'By.XPATH')
+            self.update_text(self._second_step.SECOND_STEP_FACT_REGION_FIELD_XPATH,
+                             region if region else model.region)
+            self.click(first_value_from_list)
+            self.update_text(self._second_step.SECOND_STEP_FACT_CITY_FIELD_XPATH,
+                             city if city else model.city)
+            self.click(first_value_from_list)
+            self.update_text(self._second_step.SECOND_STEP_FACT_CITY_FIELD_XPATH,
+                             area if area else model.area)
+            self.click(first_value_from_list)
+            self.update_text(self._second_step.SECOND_STEP_FACT_STREET_FIELD_XPATH,
+                             model.street)
+            self.click(first_value_from_list)
+            self.update_text(self._second_step.SECOND_STEP_FACT_HOUSE_XPATH,
+                             model.house)
+            self.update_text(self._second_step.SECOND_STEP_FACT_INDEX_XPATH,
+                             model.post_index)
 
     @allure.step
     def _sms_notification_checkbox(self, state=False):

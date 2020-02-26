@@ -74,7 +74,7 @@ class ClaimsSecondStepLocators:
 
     # Включенный чек-бокс "Совпадает с адресом по месту регистрации" и локатор для клика
     SECOND_STEP_FACT_ADDRESS_IS_MATCH_CHECKBOX_ENABLED_XPATH = '//input[contains(@id, "is_address_equal")]/parent::label[contains(@class, "checked")]'
-    SECOND_STEP_FACT_ADDRESS_IS_MATCH_CHECKBOX_TARGET_CSS = 'label[for="is_address_equal"]'
+    SECOND_STEP_FACT_ADDRESS_IS_MATCH_CHECKBOX_TARGET_CSS = 'label[for*="is_address_equal"]'
 
     # Поля адреса для направления корреспонденции (фактического адреса)
     # Поле ввода полного адреса

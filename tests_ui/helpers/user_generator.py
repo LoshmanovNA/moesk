@@ -20,7 +20,7 @@ class UserGenerator:
         return UserModel(first_name=self.fake_ru.first_name_male(),
                          last_name=self.fake_ru.last_name_male(),
                          patronymic_name=self.fake_ru.middle_name_male(),
-                         phone='99851234567',
+                         phone='89991234567',
                          email=self.fake_ru.email(),
                          company_full_name=self.fake_ru.company(),
                          company_short_name=self.fake_ru.company_prefix(),

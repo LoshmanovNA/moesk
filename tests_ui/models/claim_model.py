@@ -17,10 +17,11 @@ class ClaimModel:
                  user_ul_egrul_num='0000000000000',
                  user_reestr_date='06.10.2018',
                  user_inn='000000000000',
-                 region='Московская обл',
-                 area='Волоколамский',
-                 city='Волоколамск',
-                 street='Аграрная',
+                 region='Москва',
+                 area=' ',
+                 city=' ',
+                 street=' ',
+                 house='10',
                  post_index='123456',
                  proxy_number='123456',
                  proxy_date='01.01.1981',
@@ -34,8 +35,8 @@ class ClaimModel:
                  temp_connection_period=True,
                  max_power='15',
                  pre_power='30',
-                 voltage_level=True,
-                 reliability_level=True,
+                 voltage_level='380',
+                 reliability_level='3',
                  connection_points='1',
                  object_readiness=True):
 
@@ -58,6 +59,7 @@ class ClaimModel:
         self.area = area
         self.city = city
         self.street = street
+        self.house = house
         self.post_index = post_index
         self.proxy_number = proxy_number
         self.proxy_date = proxy_date
