@@ -110,7 +110,7 @@ setup(
         'beautifulsoup4==4.8.2',
         'atomicwrites==1.3.0',
         'portalocker==1.5.2',
-        'cryptography==2.8',
+        'cryptography==3.2',
         'asn1crypto==1.3.0',
         'pyopenssl==19.1.0',
         'packaging>=20.0',
